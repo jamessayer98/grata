@@ -12,6 +12,8 @@ export const SET_SIDEBAR = "SET_SIDEBAR";
 export const SET_ASIDE = "SET_ASIDE";
 export const SET_MODE = "SET_MODE";
 
+export const GET_SERVICES = "GET_SERVICES";
+
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
 export const FETCH_REFRESH_TOKEN = "FETCH_REFRESH_TOKEN";

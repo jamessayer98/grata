@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   CCard,
@@ -8,30 +8,33 @@ import {
   CRow,
   CCol,
 } from "@coreui/react";
+import { getServices } from "../../redux/actions/services";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
 
 const ServicesTable = () => {
   const dispatch = useDispatch();
-  const services = [];
+  const { servicesList } = useSelector((state) => state.services);
+
+  useEffect(() => {
+    dispatch(getServices());
+  }, []);
 
   const fields = [
-    { key: "index", _style: { width: "5%" } },
-    { key: "id", _style: { width: "10%" } },
-    { key: "user", _style: { width: "10%" } },
-    { key: "suite #", _style: { width: "10%" } },
+    { key: "index", _style: { width: "10%" } },
+    { key: "firstname", _style: { width: "15%" } },
+    { key: "lastname", _style: { width: "15%" } },
     { key: "category", _style: { width: "15%" } },
     { key: "subject", _style: { width: "15%" } },
-    { key: "assigned to", _style: { width: "10%" } },
     { key: "status", _style: { width: "10%" } },
-    { key: "create date", _style: { width: "15%" } },
+    { key: "create_date", _style: { width: "20%" } },
   ];
 
   return (
     <CCard>
       <CCardBody className="services-table">
         <CDataTable
-          items={services}
+          items={servicesList}
           fields={fields}
           columnFilter
           // tableFilter

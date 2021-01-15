@@ -18,9 +18,9 @@ const ServicesForm = () => {
 
   return (
     <>
-      <CCard className="services-form">
+      <CCard clasName="services-form">
         <CCardHeader>Service Request Details</CCardHeader>
-        <CCardBody>
+        <CCardBody className="services-form__body">
           <CRow>
             <CCol xs="3">
               <CFormGroup>

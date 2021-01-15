@@ -4,6 +4,7 @@ import { connectRouter } from "connected-react-router";
 import auth from "./auth";
 import window from "./window";
 import user from "./user";
+import services from "./services";
 
 export default (history) =>
   combineReducers({
@@ -11,4 +12,5 @@ export default (history) =>
     auth,
     window,
     user,
+    services,
   });

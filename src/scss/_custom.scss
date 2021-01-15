@@ -2,11 +2,13 @@
 
 .services {
   &-form {
-    overflow-y: scroll;
-    height: 20rem;
+    &__body {
+      overflow-y: scroll;
+      height: 17rem;
+    }
   }
 
   &-table {
-    height: 23.5rem;
+    height: 26rem;
   }
 }
