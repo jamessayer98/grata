@@ -1,116 +1,127 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getAuth } from "../firebase";
-import { setIsLoggedIn } from "../redux/actions/auth";
+// import { getAuth } from "../firebase";
+import { logout } from "../redux/actions/auth";
 import { setToast } from "../redux/actions/window";
 import {
-	CBadge,
-	CDropdown,
-	CDropdownItem,
-	CDropdownMenu,
-	CDropdownToggle,
-	CImg,
+  CBadge,
+  CDropdown,
+  CDropdownItem,
+  CDropdownMenu,
+  CDropdownToggle,
+  CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
 
 const TheHeaderDropdown = () => {
-	const history = useHistory();
-	const firebaseAuth = getAuth();
-	const dispatch = useDispatch();
+  const history = useHistory();
+  // const firebaseAuth = getAuth();
+  const dispatch = useDispatch();
 
-	const handleLogout = () => {
-		firebaseAuth
-			.signOut()
-			.then(() => {
-				dispatch(setIsLoggedIn({ isLoggedIn: false }));
-				dispatch(
-					setToast({ toastShow: true, toastMessage: "User Logged Out!" })
-				);
-				history.push("/login");
-			})
-			.catch((err) => {
-				dispatch(setToast({ toastShow: true, toastMessage: err }));
-			});
-	};
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(
+      setToast({
+        toastShow: true,
+        toastMessage: "User Logged Out!",
+      })
+    );
+    history.push("/login");
 
-	return (
-		<CDropdown inNav className="c-header-nav-items mx-2" direction="down">
-			<CDropdownToggle className="c-header-nav-link" caret={false}>
-				<div className="c-avatar">
-					<CImg
-						src={"avatars/6.jpg"}
-						className="c-avatar-img"
-						alt="admin@bootstrapmaster.com"
-					/>
-				</div>
-			</CDropdownToggle>
-			<CDropdownMenu className="pt-0" placement="bottom-end">
-				<CDropdownItem header tag="div" color="light" className="text-center">
-					<strong>Account</strong>
-				</CDropdownItem>
-				<CDropdownItem>
-					<CIcon content={freeSet.cilBell} className="mfe-2" />
-					Updates
-					<CBadge color="info" className="mfs-auto">
-						42
-					</CBadge>
-				</CDropdownItem>
-				<CDropdownItem>
-					<CIcon content={freeSet.cilEnvelopeOpen} className="mfe-2" />
-					Messages
-					<CBadge color="success" className="mfs-auto">
-						42
-					</CBadge>
-				</CDropdownItem>
-				<CDropdownItem>
-					<CIcon content={freeSet.cilTask} className="mfe-2" />
-					Tasks
-					<CBadge color="danger" className="mfs-auto">
-						42
-					</CBadge>
-				</CDropdownItem>
-				<CDropdownItem>
-					<CIcon content={freeSet.cilCommentSquare} className="mfe-2" />
-					Comments
-					<CBadge color="warning" className="mfs-auto">
-						42
-					</CBadge>
-				</CDropdownItem>
-				<CDropdownItem header tag="div" color="light" className="text-center">
-					<strong>Settings</strong>
-				</CDropdownItem>
-				<CDropdownItem>
-					<CIcon content={freeSet.cilUser} className="mfe-2" />
-					Profile
-				</CDropdownItem>
-				<CDropdownItem>
-					<CIcon content={freeSet.cilSettings} className="mfe-2" />
-					Settings
-				</CDropdownItem>
-				<CDropdownItem>
-					<CIcon content={freeSet.cilCreditCard} className="mfe-2" />
-					Payments
-					<CBadge color="secondary" className="mfs-auto">
-						42
-					</CBadge>
-				</CDropdownItem>
-				<CDropdownItem>
-					<CIcon content={freeSet.cilFile} className="mfe-2" />
-					Projects
-					<CBadge color="primary" className="mfs-auto">
-						42
-					</CBadge>
-				</CDropdownItem>
-				<CDropdownItem divider />
-				<CDropdownItem onClick={handleLogout}>
-					<CIcon content={freeSet.cilLockLocked} className="mfe-2" />
-					Lock Account
-				</CDropdownItem>
-			</CDropdownMenu>
-		</CDropdown>
-	);
+    // Firebase Authentication
+
+    // firebaseAuth
+    // 	.signOut()
+    // 	.then(() => {
+    // 		dispatch(setIsLoggedIn({ isLoggedIn: false }));
+    // 		dispatch(
+    // 			setToast({ toastShow: true, toastMessage: "User Logged Out!" })
+    // 		);
+    // 		history.push("/login");
+    // 	})
+    // 	.catch((err) => {
+    // 		dispatch(setToast({ toastShow: true, toastMessage: err }));
+    // 	});
+  };
+
+  return (
+    <CDropdown inNav className="c-header-nav-items mx-2" direction="down">
+      <CDropdownToggle className="c-header-nav-link" caret={false}>
+        <div className="c-avatar">
+          <CImg
+            src={"avatars/6.jpg"}
+            className="c-avatar-img"
+            alt="admin@bootstrapmaster.com"
+          />
+        </div>
+      </CDropdownToggle>
+      <CDropdownMenu className="pt-0" placement="bottom-end">
+        <CDropdownItem header tag="div" color="light" className="text-center">
+          <strong>Account</strong>
+        </CDropdownItem>
+        <CDropdownItem>
+          <CIcon content={freeSet.cilBell} className="mfe-2" />
+          Updates
+          <CBadge color="info" className="mfs-auto">
+            42
+          </CBadge>
+        </CDropdownItem>
+        <CDropdownItem>
+          <CIcon content={freeSet.cilEnvelopeOpen} className="mfe-2" />
+          Messages
+          <CBadge color="success" className="mfs-auto">
+            42
+          </CBadge>
+        </CDropdownItem>
+        <CDropdownItem>
+          <CIcon content={freeSet.cilTask} className="mfe-2" />
+          Tasks
+          <CBadge color="danger" className="mfs-auto">
+            42
+          </CBadge>
+        </CDropdownItem>
+        <CDropdownItem>
+          <CIcon content={freeSet.cilCommentSquare} className="mfe-2" />
+          Comments
+          <CBadge color="warning" className="mfs-auto">
+            42
+          </CBadge>
+        </CDropdownItem>
+        <CDropdownItem header tag="div" color="light" className="text-center">
+          <strong>Settings</strong>
+        </CDropdownItem>
+        <CDropdownItem>
+          <CIcon content={freeSet.cilUser} className="mfe-2" />
+          Profile
+        </CDropdownItem>
+        <CDropdownItem>
+          <CIcon content={freeSet.cilSettings} className="mfe-2" />
+          Settings
+        </CDropdownItem>
+        <CDropdownItem>
+          <CIcon content={freeSet.cilCreditCard} className="mfe-2" />
+          Payments
+          <CBadge color="secondary" className="mfs-auto">
+            42
+          </CBadge>
+        </CDropdownItem>
+        <CDropdownItem>
+          <CIcon content={freeSet.cilFile} className="mfe-2" />
+          Projects
+          <CBadge color="primary" className="mfs-auto">
+            42
+          </CBadge>
+        </CDropdownItem>
+        <CDropdownItem divider />
+        <CDropdownItem onClick={handleLogout}>
+          <CIcon content={freeSet.cilLockLocked} className="mfe-2" />
+          Lock Account
+        </CDropdownItem>
+      </CDropdownMenu>
+    </CDropdown>
+  );
 };
 
 export default TheHeaderDropdown;

@@ -9,28 +9,28 @@ import sagas from "./sagas";
 export const history = createBrowserHistory();
 
 export default () => {
-	const initialState = {};
-	const sagaMiddleware = createSagaMiddleware();
-	const middlewares = [sagaMiddleware, routerMiddleware(history)];
+  const initialState = {};
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
-	const enhancers = [applyMiddleware(...middlewares)];
+  const enhancers = [applyMiddleware(...middlewares)];
 
-	const composeEnhancers =
-		process.env.NODE_ENV !== "production" &&
-		typeof window === "object" &&
-		window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-			? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-					shouldHotReload: false,
-			  })
-			: compose;
+  const composeEnhancers =
+    process.env.NODE_ENV !== "production" &&
+    typeof window === "object" &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+          shouldHotReload: false,
+        })
+      : compose;
 
-	const store = createStore(
-		createRootReducer(history),
-		initialState,
-		composeEnhancers(...enhancers)
-	);
+  const store = createStore(
+    createRootReducer(history),
+    initialState,
+    composeEnhancers(...enhancers)
+  );
 
-	sagaMiddleware.run(sagas);
+  sagaMiddleware.run(sagas);
 
-	return store;
+  return store;
 };

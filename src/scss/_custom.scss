@@ -1,1 +1,12 @@
 // Here you can add other styles
+
+.services {
+  &-form {
+    overflow-y: scroll;
+    height: 20rem;
+  }
+
+  &-table {
+    height: 23.5rem;
+  }
+}

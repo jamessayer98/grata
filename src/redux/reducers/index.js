@@ -6,9 +6,9 @@ import window from "./window";
 import user from "./user";
 
 export default (history) =>
-	combineReducers({
-		router: connectRouter(history),
-		auth,
-		window,
-		user,
-	});
+  combineReducers({
+    router: connectRouter(history),
+    auth,
+    window,
+    user,
+  });
