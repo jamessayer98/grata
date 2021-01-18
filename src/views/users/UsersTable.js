@@ -12,7 +12,7 @@ const UsersTable = (props) => {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, []);
+  }, [dispatch]);
 
   const fields = [
     { key: "index", _style: { width: "5%" } },

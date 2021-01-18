@@ -15,7 +15,6 @@ import {
   setIsLoggedIn,
   setRefreshToken,
 } from "./redux/actions/auth";
-import { setToast } from "./redux/actions/window";
 
 import "./scss/style.scss";
 

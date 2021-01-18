@@ -9,7 +9,7 @@ const ServicesTable = () => {
 
   useEffect(() => {
     dispatch(getServices());
-  }, []);
+  }, [dispatch]);
 
   const fields = [
     { key: "index", _style: { width: "5%" } },
