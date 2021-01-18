@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import { ReactComponent as Logo } from "../../../assets/icons/logo.svg";
 import {
@@ -67,36 +67,6 @@ const Login = () => {
     email: localStorage.getItem("user") ? localStorage.getItem("user") : "",
     password: "",
   };
-
-  // const { toastMessage } = useSelector((state) => state.window);
-  // const { tokenRefresh } = useSelector((state) => state.auth);
-
-  // useEffect(() => {
-  //   if (toastMessage === "User Logged Out!" && tokenRefresh !== 0) {
-  //     clearInterval(tokenRefresh);
-  //   }
-  // }, [toastMessage, tokenRefresh]);
-
-  // const callRefreshToken = (token) => {
-  //   const tokenRefresh = setInterval(refreshToken(token), 5000);
-  //   dispatch(
-  //     setRefreshToken({
-  //       tokenRefresh: tokenRefresh,
-  //     })
-  //   );
-  // };
-
-  // const refreshToken = (token) => {
-  //   const requestOption = {
-  //     method: "POST",
-  //     headers: { "Content-Type": "applicaiton/json" },
-  //     body: JSON.stringify({ refreshToken: token }),
-  //   };
-
-  //   fetch(REFRESH_LOGIN_TOKEN, requestOption).then(() => {
-  //     console.log("Successfully Refreshed");
-  //   });
-  // };
 
   const onSubmit = (values) => {
     dispatch(

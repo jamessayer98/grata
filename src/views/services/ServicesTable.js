@@ -1,16 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  CCard,
-  CCardBody,
-  CButton,
-  CDataTable,
-  CRow,
-  CCol,
-} from "@coreui/react";
-import { getServices } from "../../redux/actions/services";
-import CIcon from "@coreui/icons-react";
-import { freeSet } from "@coreui/icons";
+import { CCard, CCardBody, CDataTable } from "@coreui/react";
+import { getServices, getService } from "../../redux/actions/services";
 
 const ServicesTable = () => {
   const dispatch = useDispatch();
@@ -21,13 +12,15 @@ const ServicesTable = () => {
   }, []);
 
   const fields = [
-    { key: "index", _style: { width: "10%" } },
-    { key: "firstname", _style: { width: "15%" } },
-    { key: "lastname", _style: { width: "15%" } },
+    { key: "index", _style: { width: "5%" } },
+    { key: "firstname", _style: { width: "5%" } },
+    { key: "lastname", _style: { width: "5%" } },
     { key: "category", _style: { width: "15%" } },
-    { key: "subject", _style: { width: "15%" } },
+    { key: "subject", _style: { width: "25%" } },
     { key: "status", _style: { width: "10%" } },
-    { key: "create_date", _style: { width: "20%" } },
+    { key: "create_date", _style: { width: "15%" } },
+    { key: "update_date", _style: { width: "15%" } },
+    { key: "time_slot", _style: { width: "5%" } },
   ];
 
   return (
@@ -37,17 +30,14 @@ const ServicesTable = () => {
           items={servicesList}
           fields={fields}
           columnFilter
-          // tableFilter
-          // cleaner
-          // itemsPerPageSelect
           itemsPerPage={5}
           hover
           sorter
           pagination
-          // loading
-          // onRowClick={(item,index,col,e) => console.log(item,index,col,e)}
-          // onPageChange={(val) => console.log('new page:', val)}
-          // onPagesChange={(val) => console.log('new pages:', val)}
+          onRowClick={(item, index, col, e) => {
+            dispatch(getService({ id: item.id }));
+          }}
+          onPageChange={(val) => console.log("new page:", val)}
           // onPaginationChange={(val) => console.log('new pagination:', val)}
           // onFilteredItemsChange={(val) => console.log('new filtered items:', val)}
           // onSorterValueChange={(val) => console.log("new sorter value:", val)}

@@ -15,9 +15,9 @@ const UsersTable = (props) => {
   }, []);
 
   const fields = [
-    { key: "index", _style: { width: "4%" } },
-    { key: "first_name", _style: { width: "8%" } },
-    { key: "last_name", _style: { width: "8%" } },
+    { key: "index", _style: { width: "5%" } },
+    { key: "first_name", _style: { width: "5%" } },
+    { key: "last_name", _style: { width: "5%" } },
     { key: "email", _style: { width: "10%" } },
     { key: "role_id", _style: { width: "10%" } },
     { key: "cell_phone", _style: { width: "10%" } },
@@ -26,7 +26,7 @@ const UsersTable = (props) => {
     { key: "level", _style: { width: "5%" } },
     { key: "building_id", _style: { width: "5%" } },
     { key: "create_date", _style: { width: "10%" } },
-    { key: "edit", _style: { width: "10%" } },
+    { key: "edit", _style: { width: "15%" } },
   ];
 
   const handleEdit = (index) => {
@@ -38,82 +38,80 @@ const UsersTable = (props) => {
   const handleRemove = () => {};
 
   return (
-    <>
-      <CCardBody>
-        <CDataTable
-          items={users}
-          fields={fields}
-          columnFilter
-          tableFilter
-          cleaner
-          itemsPerPageSelect
-          itemsPerPage={5}
-          hover
-          sorter
-          pagination
-          // loading
-          // onRowClick={(item,index,col,e) => console.log(item,index,col,e)}
-          // onPageChange={(val) => console.log('new page:', val)}
-          // onPagesChange={(val) => console.log('new pages:', val)}
-          // onPaginationChange={(val) => console.log('new pagination:', val)}
-          // onFilteredItemsChange={(val) => console.log('new filtered items:', val)}
-          // onSorterValueChange={(val) => console.log("new sorter value:", val)}
-          // onTableFilterChange={(val) => console.log('new table filter:', val)}
-          // onColumnFilterChange={(val) => console.log('new column filter:', val)}
-          scopedSlots={{
-            index: (item, index) => {
-              return <td>{index + 1}</td>;
-            },
-            role_id: (item) => {
-              if (item.role_id === 1) {
-                return <td>User</td>;
-              } else if (item.role_id === 2) {
-                return <td>Admin</td>;
-              } else {
-                return <td>Super Admin</td>;
-              }
-            },
-            type_id: (item) => {
-              if (item.type_id === 1) {
-                return <td>Resident</td>;
-              } else if (item.type_id === 2) {
-                return <td>Co-Resident</td>;
-              } else if (item.type_id === 3) {
-                return <td>Building Manager</td>;
-              } else {
-                return <td>Admin</td>;
-              }
-            },
-            edit: (item, index) => {
-              return (
-                <td>
-                  <CRow className="">
-                    <CCol col="6" className="text-right">
-                      <CButton
-                        onClick={() => handleEdit(index)}
-                        size="sm"
-                        color="info"
-                      >
-                        <CIcon content={freeSet.cilPencil} />
-                      </CButton>
-                    </CCol>
-                    <CCol col="6" className="text-left">
-                      <CButton
-                        onClick={() => handleRemove(index)}
-                        size="sm"
-                        color="danger"
-                      >
-                        <CIcon content={freeSet.cilTrash} />
-                      </CButton>
-                    </CCol>
-                  </CRow>
-                </td>
-              );
-            },
-          }}
-        />
-      </CCardBody>
-    </>
+    <CCardBody>
+      <CDataTable
+        items={users}
+        fields={fields}
+        columnFilter
+        tableFilter
+        cleaner
+        itemsPerPageSelect
+        itemsPerPage={5}
+        hover
+        sorter
+        pagination
+        // loading
+        // onRowClick={(item,index,col,e) => console.log(item,index,col,e)}
+        // onPageChange={(val) => console.log('new page:', val)}
+        // onPagesChange={(val) => console.log('new pages:', val)}
+        // onPaginationChange={(val) => console.log('new pagination:', val)}
+        // onFilteredItemsChange={(val) => console.log('new filtered items:', val)}
+        // onSorterValueChange={(val) => console.log("new sorter value:", val)}
+        // onTableFilterChange={(val) => console.log('new table filter:', val)}
+        // onColumnFilterChange={(val) => console.log('new column filter:', val)}
+        scopedSlots={{
+          index: (item, index) => {
+            return <td>{index + 1}</td>;
+          },
+          role_id: (item) => {
+            if (item.role_id === 1) {
+              return <td>User</td>;
+            } else if (item.role_id === 2) {
+              return <td>Admin</td>;
+            } else {
+              return <td>Super Admin</td>;
+            }
+          },
+          type_id: (item) => {
+            if (item.type_id === 1) {
+              return <td>Resident</td>;
+            } else if (item.type_id === 2) {
+              return <td>Co-Resident</td>;
+            } else if (item.type_id === 3) {
+              return <td>Building Manager</td>;
+            } else {
+              return <td>Admin</td>;
+            }
+          },
+          edit: (item, index) => {
+            return (
+              <td>
+                <CRow className="">
+                  <CCol col="6" className="text-right">
+                    <CButton
+                      onClick={() => handleEdit(index)}
+                      size="sm"
+                      color="info"
+                    >
+                      <CIcon content={freeSet.cilPencil} />
+                    </CButton>
+                  </CCol>
+                  <CCol col="6" className="text-left">
+                    <CButton
+                      onClick={() => handleRemove(index)}
+                      size="sm"
+                      color="danger"
+                    >
+                      <CIcon content={freeSet.cilTrash} />
+                    </CButton>
+                  </CCol>
+                </CRow>
+              </td>
+            );
+          },
+        }}
+      />
+    </CCardBody>
   );
 };
 
