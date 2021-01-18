@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CCard, CCardBody, CDataTable } from "@coreui/react";
-import { getServices, getService } from "../../redux/actions/services";
+import {
+  getServices,
+  getService,
+  getCommentId,
+} from "../../redux/actions/services";
 
 const ServicesTable = () => {
   const dispatch = useDispatch();
@@ -36,13 +40,12 @@ const ServicesTable = () => {
           pagination
           onRowClick={(item, index, col, e) => {
             dispatch(getService({ id: item.id }));
+            dispatch(
+              getCommentId({
+                commentId: item.id,
+              })
+            );
           }}
-          onPageChange={(val) => console.log("new page:", val)}
-          // onPaginationChange={(val) => console.log('new pagination:', val)}
-          // onFilteredItemsChange={(val) => console.log('new filtered items:', val)}
-          // onSorterValueChange={(val) => console.log("new sorter value:", val)}
-          // onTableFilterChange={(val) => console.log('new table filter:', val)}
-          // onColumnFilterChange={(val) => console.log('new column filter:', val)}
           scopedSlots={{
             index: (item, index) => {
               return <td>{index + 1}</td>;

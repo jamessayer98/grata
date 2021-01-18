@@ -14,6 +14,8 @@ export const SET_MODE = "SET_MODE";
 
 export const GET_SERVICES = "GET_SERVICES";
 export const GET_SERVICE = "GET_SERVICE";
+export const ADD_COMMENT = "ADD_COMMENT";
+export const GET_COMMENT_ID = "GET_COMMENT_ID";
 
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";

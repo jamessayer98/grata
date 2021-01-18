@@ -27,8 +27,6 @@ import { login } from "../../../redux/actions/auth";
 import { setToast } from "../../../redux/actions/window";
 
 const Login = () => {
-  // const firebaseAuth = getAuth();
-
   const history = useHistory();
   const dispatch = useDispatch();
 
