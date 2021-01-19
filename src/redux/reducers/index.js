@@ -5,6 +5,7 @@ import auth from "./auth";
 import window from "./window";
 import user from "./user";
 import services from "./services";
+import customer from "./customer";
 
 export default (history) =>
   combineReducers({
@@ -13,4 +14,5 @@ export default (history) =>
     window,
     user,
     services,
+    customer,
   });

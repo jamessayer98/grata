@@ -31,7 +31,7 @@ const ServicesForm = () => {
 
   useEffect(() => {
     dispatch(getAvatar({ id: service.media }));
-  }, []);
+  }, [dispatch, service.media]);
 
   const validationSchema = function (values) {
     return Yup.object().shape({

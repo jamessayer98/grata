@@ -5,25 +5,25 @@ import EditUser from "./EditUser";
 import UsersTable from "./UsersTable";
 
 const Users = () => {
-	const [handleEditModal, setHandleEditModal] = useState(false);
-	const history = useHistory();
+  const [handleEditModal, setHandleEditModal] = useState(false);
+  const history = useHistory();
 
-	const handleAddUser = () => {
-		history.push("/adduser");
-	};
+  const handleAddUser = () => {
+    history.push("/users/adduser");
+  };
 
-	return (
-		<CCardBody>
-			<CButton onClick={handleAddUser} color="primary" className="mb-2">
-				+ Add User
-			</CButton>
-			<UsersTable setHandleEditModal={setHandleEditModal} />
-			<EditUser
-				handleEditModal={handleEditModal}
-				setHandleEditModal={setHandleEditModal}
-			/>
-		</CCardBody>
-	);
+  return (
+    <CCardBody>
+      <CButton onClick={handleAddUser} color="primary" className="mb-2">
+        + Add User
+      </CButton>
+      <UsersTable setHandleEditModal={setHandleEditModal} />
+      <EditUser
+        handleEditModal={handleEditModal}
+        setHandleEditModal={setHandleEditModal}
+      />
+    </CCardBody>
+  );
 };
 
 export default Users;

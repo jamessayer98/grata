@@ -4,6 +4,12 @@ export const REMOVE_USER = "REMOVE_USER";
 export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";
 
+export const ADD_CUSTOMER = "ADD_CUSTOMER";
+export const EDIT_CUSTOMER = "EDIT_CUSTOMER";
+export const REMOVE_CUSTOMER = "REMOVE_CUSTOMER";
+export const GET_CUSTOMERS = "GET_CUSTOMERS";
+export const GET_CUSTOMER = "GET_CUSTOMER";
+
 export const ADD_AVATAR = "ADD_AVATAR";
 export const GET_AVATAR = "GET_AVATAR";
 
