@@ -10,6 +10,20 @@ export const REMOVE_CUSTOMER = "REMOVE_CUSTOMER";
 export const GET_CUSTOMERS = "GET_CUSTOMERS";
 export const GET_CUSTOMER = "GET_CUSTOMER";
 
+export const ADD_BUILDING = "ADD_BUILDING";
+export const EDIT_BUILDING = "EDIT_BUILDING";
+export const REMOVE_BUILDING = "REMOVE_BUILDING";
+export const GET_BUILDING = "GET_BUILDING";
+export const GET_ALLBUILDINGS = "GET_ALLBUILDINGS";
+export const GET_CUSTOMBUILDINGS = "GET_CUSTOMBUILDINGS";
+
+export const ADD_UNIT = "ADD_UNIT";
+export const EDIT_UNIT = "EDIT_UNIT";
+export const REMOVE_UNIT = "REMOVE_UNIT";
+export const GET_UNIT = "GET_UNIT";
+export const GET_ALLUNITS = "GET_ALLUNITS";
+export const GET_CUSTOMUNITS = "GET_CUSTOMUNITS";
+
 export const ADD_AVATAR = "ADD_AVATAR";
 export const GET_AVATAR = "GET_AVATAR";
 
@@ -30,3 +44,6 @@ export const FETCH_REFRESH_TOKEN = "FETCH_REFRESH_TOKEN";
 export const SET_REFRESH_TOKEN = "SET_REFRESH_TOKEN";
 export const SET_ID_TOKEN = "SET_ID_TOKEN";
 export const SET_IS_LOGGED_IN = "SET_IS_LOGGED_IN";
+
+export const GET_COUNTRY = "GET_COUNTRY";
+export const GET_STATE = "GET_STATE";

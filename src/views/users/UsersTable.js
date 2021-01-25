@@ -79,20 +79,12 @@ const UsersTable = (props) => {
               <td>
                 <CRow className="">
                   <CCol col="6" className="text-right">
-                    <CButton
-                      onClick={() => handleEdit(index)}
-                      size="sm"
-                      color="info"
-                    >
+                    <CButton onClick={() => handleEdit(index)} size="sm" color="info">
                       <CIcon content={freeSet.cilPencil} />
                     </CButton>
                   </CCol>
                   <CCol col="6" className="text-left">
-                    <CButton
-                      onClick={() => handleRemove(index)}
-                      size="sm"
-                      color="danger"
-                    >
+                    <CButton onClick={() => handleRemove(index)} size="sm" color="danger">
                       <CIcon content={freeSet.cilTrash} />
                     </CButton>
                   </CCol>

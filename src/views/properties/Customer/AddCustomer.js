@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { setToast } from "../../redux/actions/window";
-import { useDispatch } from "react-redux";
+import { setToast } from "../../../redux/actions/window";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik } from "formik";
 import {
   CForm,
@@ -16,21 +16,26 @@ import {
   CButton,
   CCardBody,
   CCard,
+  CCardHeader,
+  CCardTitle,
 } from "@coreui/react";
 import * as Yup from "yup";
-import { addCustomer } from "../../redux/actions/customer";
+import { addCustomer } from "../../../redux/actions/customer";
 
 const AddCustomer = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { customer } = useSelector((state) => state.customer);
+
+  useEffect(() => {
+    if (!customer.id) history.push("/properties/customer");
+  });
 
   const validationSchema = function (values) {
     return Yup.object().shape({
       name: Yup.string().required("Name is required"),
       contact: Yup.string().required("Contact is required"),
-      email: Yup.string()
-        .email("Invalid email address")
-        .required("Email is required"),
+      email: Yup.string().email("Invalid email address").required("Email is required"),
     });
   };
 
@@ -94,26 +99,17 @@ const AddCustomer = () => {
         <CCol className="offset-3 col-6">
           <CCardGroup>
             <CCard>
+              <CCardHeader>
+                <CCardTitle>Add New Customer</CCardTitle>
+              </CCardHeader>
               <CCardBody>
                 <Formik
                   initialValues={initialValues}
                   validate={validate(validationSchema)}
                   onSubmit={onSubmit}
                 >
-                  {({
-                    values,
-                    errors,
-                    touched,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                  }) => (
-                    <CForm
-                      onSubmit={handleSubmit}
-                      noValidate
-                      name="AddCustomerForm"
-                    >
-                      <span className="h3">Add New Customer</span>
+                  {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+                    <CForm onSubmit={handleSubmit} noValidate name="AddCustomerForm">
                       <CFormGroup row className="mt-4">
                         <CCol>
                           <CLabel htmlFor="nf-name">Name</CLabel>

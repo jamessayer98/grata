@@ -1,10 +1,5 @@
 import { takeLatest } from "redux-saga/effects";
-import {
-  ADD_CUSTOMER,
-  EDIT_CUSTOMER,
-  REMOVE_CUSTOMER,
-  GET_CUSTOMERS,
-} from "../constants";
+import { ADD_CUSTOMER, EDIT_CUSTOMER, REMOVE_CUSTOMER, GET_CUSTOMERS } from "../constants";
 import apiCall from "../../utils/apiCall";
 
 const addCustomer = apiCall({

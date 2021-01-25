@@ -13,6 +13,8 @@ module.exports = function (app) {
         "^/api/login/refresh-token": "/login/refresh-token",
         "^/api/requests": "/requests",
         "^/api/orgs": "/orgs",
+        "^/api/buildings": "/buildings",
+        "^/api/units": "/units",
       },
     })
   );

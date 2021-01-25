@@ -2,19 +2,10 @@ import React, { useEffect } from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
-// import { getAuth } from "./firebase";
-import {
-  TheSidebar,
-  TheAside,
-  TheFooter,
-  TheHeader,
-  TheContent,
-} from "./containers/index";
-import {
-  setIdToken,
-  setIsLoggedIn,
-  setRefreshToken,
-} from "./redux/actions/auth";
+import { TheSidebar, TheAside, TheFooter, TheHeader, TheContent } from "./containers/index";
+import { setIdToken, setIsLoggedIn, setRefreshToken } from "./redux/actions/auth";
+import { getUsers } from "./redux/actions/user";
+import { getCustomers } from "./redux/actions/customer";
 
 import "./scss/style.scss";
 
@@ -32,10 +23,7 @@ const App = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { darkMode } = useSelector((state) => state.window);
   const dispatch = useDispatch();
-  const classes = classNames(
-    "c-app c-default-layout",
-    darkMode && "c-dark-theme"
-  );
+  const classes = classNames("c-app c-default-layout", darkMode && "c-dark-theme");
 
   useEffect(() => {
     const idToken = localStorage.getItem("idToken") || "";
@@ -45,36 +33,10 @@ const App = () => {
       dispatch(setIdToken({ idToken: idToken }));
       dispatch(setRefreshToken({ refreshToken: refreshToken }));
       dispatch(setIsLoggedIn({ isLoggedIn: true }));
+      dispatch(getUsers());
+      dispatch(getCustomers());
     }
-  }, [dispatch]);
-
-  // useEffect(() => {
-  //   firebaseAuth.onAuthStateChanged(async (user) => {
-  //     if (user) {
-  //       const fbIdToken = await user.getIdToken();
-
-  //       dispatch(
-  //         setIdToken({
-  //           idToken: fbIdToken,
-  //         })
-  //       );
-  //       dispatch(
-  //         setIsLoggedIn({
-  //           isLoggedIn: true,
-  //         })
-  //       );
-  //     }
-
-  //     if (!initialized) {
-  //       setInitialized(true);
-  //     }
-  //   });
-  //   // eslint-disable-next-line
-  // }, [dispatch]);
-
-  // if (!initialized) {
-  //   return <LoadingFallback />;
-  // }
+  }, []);
 
   return (
     <HashRouter>
@@ -83,27 +45,14 @@ const App = () => {
           {!isLoggedIn && (
             <Switch>
               <Route exact path="/" render={() => <Redirect to="/login" />} />
-              <Route
-                exact
-                path="/login"
-                name="Login"
-                render={(props) => <Login {...props} />}
-              />
+              <Route exact path="/login" name="Login" render={(props) => <Login {...props} />} />
             </Switch>
           )}
 
           {isLoggedIn && (
             <div className={classes}>
-              <Route
-                exact
-                path="/login"
-                redner={() => <Redirect to="/dashboard" />}
-              />
-              <Route
-                exact
-                path="/"
-                redner={() => <Redirect to="/dashboard" />}
-              />
+              <Route exact path="/login" redner={() => <Redirect to="/dashboard" />} />
+              <Route exact path="/" redner={() => <Redirect to="/dashboard" />} />
               <TheSidebar />
               <TheAside />
               <div className="c-wrapper">

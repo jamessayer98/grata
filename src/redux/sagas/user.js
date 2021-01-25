@@ -1,12 +1,5 @@
 import { takeLatest } from "redux-saga/effects";
-import {
-  GET_USERS,
-  ADD_USER,
-  EDIT_USER,
-  REMOVE_USER,
-  ADD_AVATAR,
-  GET_AVATAR,
-} from "../constants";
+import { GET_USERS, ADD_USER, EDIT_USER, REMOVE_USER, ADD_AVATAR, GET_AVATAR } from "../constants";
 import apiCall from "../../utils/apiCall";
 
 const addAvatar = apiCall({

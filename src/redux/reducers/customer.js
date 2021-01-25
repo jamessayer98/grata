@@ -6,11 +6,7 @@ import {
   GET_CUSTOMERS,
   GET_CUSTOMER,
 } from "../constants";
-import {
-  requestSuccess,
-  requestFail,
-  requestPending,
-} from "../../utils/status";
+import { requestSuccess, requestFail, requestPending } from "../../utils/status";
 
 const initialState = {
   customers: [],

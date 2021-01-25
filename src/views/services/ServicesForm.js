@@ -4,6 +4,7 @@ import Image from "../../components/Image";
 import Message from "../../components/Message";
 import { getAvatar } from "../../redux/actions/user";
 import { addComment } from "../../redux/actions/services";
+import { setToast } from "../../redux/actions/window";
 import {
   CCard,
   CCardBody,
@@ -20,7 +21,6 @@ import {
 } from "@coreui/react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { setToast } from "../../redux/actions/window";
 
 const ServicesForm = () => {
   const dispatch = useDispatch();
