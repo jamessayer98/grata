@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, getUsers, getAvatar } from "../../redux/actions/user";
-import { CCardBody, CButton, CDataTable, CRow, CCol } from "@coreui/react";
+import { CButton, CDataTable, CRow, CCol } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
 
@@ -38,63 +38,61 @@ const UsersTable = (props) => {
   const handleRemove = () => {};
 
   return (
-    <CCardBody>
-      <CDataTable
-        items={users}
-        fields={fields}
-        columnFilter
-        tableFilter
-        cleaner
-        itemsPerPageSelect
-        itemsPerPage={5}
-        hover
-        sorter
-        pagination
-        scopedSlots={{
-          index: (item, index) => {
-            return <td>{index + 1}</td>;
-          },
-          role_id: (item) => {
-            if (item.role_id === 1) {
-              return <td>User</td>;
-            } else if (item.role_id === 2) {
-              return <td>Admin</td>;
-            } else {
-              return <td>Super Admin</td>;
-            }
-          },
-          type_id: (item) => {
-            if (item.type_id === 1) {
-              return <td>Resident</td>;
-            } else if (item.type_id === 2) {
-              return <td>Co-Resident</td>;
-            } else if (item.type_id === 3) {
-              return <td>Building Manager</td>;
-            } else {
-              return <td>Admin</td>;
-            }
-          },
-          edit: (item, index) => {
-            return (
-              <td>
-                <CRow className="">
-                  <CCol col="6" className="text-right">
-                    <CButton onClick={() => handleEdit(index)} size="sm" color="info">
-                      <CIcon content={freeSet.cilPencil} />
-                    </CButton>
-                  </CCol>
-                  <CCol col="6" className="text-left">
-                    <CButton onClick={() => handleRemove(index)} size="sm" color="danger">
-                      <CIcon content={freeSet.cilTrash} />
-                    </CButton>
-                  </CCol>
-                </CRow>
-              </td>
-            );
-          },
-        }}
-      />
-    </CCardBody>
+    <CDataTable
+      items={users}
+      fields={fields}
+      columnFilter
+      tableFilter
+      cleaner
+      itemsPerPageSelect
+      itemsPerPage={5}
+      hover
+      sorter
+      pagination
+      scopedSlots={{
+        index: (item, index) => {
+          return <td>{index + 1}</td>;
+        },
+        role_id: (item) => {
+          if (item.role_id === 1) {
+            return <td>User</td>;
+          } else if (item.role_id === 2) {
+            return <td>Admin</td>;
+          } else {
+            return <td>Super Admin</td>;
+          }
+        },
+        type_id: (item) => {
+          if (item.type_id === 1) {
+            return <td>Resident</td>;
+          } else if (item.type_id === 2) {
+            return <td>Co-Resident</td>;
+          } else if (item.type_id === 3) {
+            return <td>Building Manager</td>;
+          } else {
+            return <td>Admin</td>;
+          }
+        },
+        edit: (item, index) => {
+          return (
+            <td>
+              <CRow className="">
+                <CCol col="6" className="text-right">
+                  <CButton onClick={() => handleEdit(index)} size="sm" color="info">
+                    <CIcon content={freeSet.cilPencil} />
+                  </CButton>
+                </CCol>
+                <CCol col="6" className="text-left">
+                  <CButton onClick={() => handleRemove(index)} size="sm" color="danger">
+                    <CIcon content={freeSet.cilTrash} />
+                  </CButton>
+                </CCol>
+              </CRow>
+            </td>
+          );
+        },
+      }}
+    />
   );
 };
 

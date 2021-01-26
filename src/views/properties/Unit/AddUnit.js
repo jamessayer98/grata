@@ -32,7 +32,7 @@ const AddUnit = () => {
 
   useEffect(() => {
     if (!building.id) history.push("/properties/customer");
-  }, []);
+  }, [building, history]);
 
   const validationSchema = function (values) {
     return Yup.object().shape({

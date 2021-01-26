@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CCard, CCardBody, CDataTable } from "@coreui/react";
-import {
-  getServices,
-  getService,
-  getCommentId,
-} from "../../redux/actions/services";
+import { CCard, CCardHeader, CCardTitle, CCardBody, CDataTable } from "@coreui/react";
+import { getServices, getService, getCommentId } from "../../redux/actions/services";
 
 const ServicesTable = () => {
   const dispatch = useDispatch();
@@ -29,6 +25,9 @@ const ServicesTable = () => {
 
   return (
     <CCard>
+      <CCardHeader>
+        <CCardTitle>Service Requests</CCardTitle>
+      </CCardHeader>
       <CCardBody className="services-table">
         <CDataTable
           items={servicesList}

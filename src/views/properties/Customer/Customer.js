@@ -38,6 +38,7 @@ const Customer = () => {
   };
 
   const handleEdit = (index) => {
+    dispatch(getCustomer(customers[index]));
     history.push("/properties/customer/edit");
   };
 

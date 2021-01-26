@@ -8,6 +8,7 @@ import { setToast } from "../../redux/actions/window";
 import {
   CCard,
   CCardBody,
+  CCardTitle,
   CCol,
   CRow,
   CCardHeader,
@@ -25,9 +26,7 @@ import * as Yup from "yup";
 const ServicesForm = () => {
   const dispatch = useDispatch();
   const [hyperLink, setHyperLink] = useState(false);
-  const { service, comments, commentId } = useSelector(
-    (state) => state.services
-  );
+  const { service, comments, commentId } = useSelector((state) => state.services);
 
   useEffect(() => {
     dispatch(getAvatar({ id: service.media }));
@@ -87,10 +86,12 @@ const ServicesForm = () => {
 
   return (
     <CCard className="services-form">
-      <CCardHeader>Service Request Details</CCardHeader>
-      <CCardBody className="services-form__body">
+      <CCardHeader>
+        <CCardTitle>Service Request Details</CCardTitle>
+      </CCardHeader>
+      <CCardBody>
         <CRow>
-          <CCol xs="3">
+          <CCol xs="12" md="6" lg="6" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="id">
                 ID
@@ -107,7 +108,7 @@ const ServicesForm = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs="3">
+          <CCol xs="12" md="6" lg="4" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="category">
                 Category
@@ -121,7 +122,7 @@ const ServicesForm = () => {
               />
             </CFormGroup>
           </CCol>
-          <CCol xs="3">
+          <CCol xs="12" md="6" lg="4" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="subject">
                 Subject
@@ -137,7 +138,7 @@ const ServicesForm = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs="3">
+          <CCol xs="12" md="6" lg="4" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="media">
                 Media
@@ -147,7 +148,7 @@ const ServicesForm = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs="6">
+          <CCol xs="12" md="9" lg="6" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="description">
                 Description
@@ -163,59 +164,47 @@ const ServicesForm = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs="4">
+          <CCol xs="12" md="6" lg="4" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="create_date">
-                Create Date :
+                Create Date
               </CLabel>
-              <CLabel className="h6" id="create_date">
-                {service.create_date}
-              </CLabel>
+              <CInput id="subject" className="h6" value={service.create_date} required />
             </CFormGroup>
           </CCol>
-        </CRow>
-        <CRow>
-          <CCol xs="4">
+          <CCol xs="12" md="6" lg="4" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="last_udpate">
-                Last Update :
+                Last Update
               </CLabel>
-              <CLabel className="h6" id="last_update">
-                {service.last_update}
-              </CLabel>
+              <CInput id="subject" className="h6" value={service.last_update} required />
             </CFormGroup>
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs="8">
+          <CCol xs="12" md="9" lg="8" xl="6" className="comment m-3">
             <CLabel className="h6">Comments</CLabel>
             {comments &&
               comments.map((comment, index) => {
-                return <Message comment={comment} key={index} />;
+                return <Message className="comment-message" comment={comment} key={index} />;
               })}
           </CCol>
         </CRow>
         {hyperLink ? (
           <>
-            <CRow>
+            <CRow className="mt-2">
               <Formik
                 initialValues={initialValues}
                 validate={validate(validationSchema)}
                 onSubmit={onSubmit}
               >
-                {({
-                  values,
-                  errors,
-                  touched,
-                  handleChange,
-                  handleBlur,
-                  handleSubmit,
-                }) => (
+                {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
                   <CForm onSubmit={handleSubmit} noValidate name="CommentForm">
                     <CFormGroup>
                       <CRow>
-                        <CCol xs="9">
+                        <CCol xs="6" lg="9">
                           <CInput
+                            className="ml-3"
                             type="text"
                             id="comment"
                             name="comment"
@@ -227,15 +216,11 @@ const ServicesForm = () => {
                             onBlur={handleBlur}
                             value={values.comment}
                           />
-                          <CInvalidFeedback>{errors.comment}</CInvalidFeedback>
+                          <CInvalidFeedback className="pl-3">{errors.comment}</CInvalidFeedback>
                         </CCol>
-                        <CCol xs="3">
-                          <CButton
-                            type="submit"
-                            color="primary"
-                            className="px-4"
-                          >
-                            Submit
+                        <CCol xs="6" lg="3">
+                          <CButton type="submit" color="primary" className="px-4">
+                            <h10>Submit</h10>
                           </CButton>
                         </CCol>
                       </CRow>
@@ -245,24 +230,28 @@ const ServicesForm = () => {
               </Formik>
             </CRow>
             <CRow>
-              <CButton
-                type="button"
-                className="btn btn-link"
-                onClick={() => setHyperLink(false)}
-              >
-                Less...
-              </CButton>
+              <CCol className="ml-2">
+                <CButton
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => setHyperLink(false)}
+                >
+                  <h10>Less ...</h10>
+                </CButton>
+              </CCol>
             </CRow>
           </>
         ) : (
           <CRow>
-            <CButton
-              type="button"
-              className="btn btn-link"
-              onClick={() => setHyperLink(true)}
-            >
-              Add new Comment...
-            </CButton>
+            <CCol className="ml-2">
+              <CButton
+                type="button"
+                className="h10 btn btn-primary"
+                onClick={() => setHyperLink(true)}
+              >
+                <h10>Add Comment</h10>
+              </CButton>
+            </CCol>
           </CRow>
         )}
       </CCardBody>

@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { setToast } from "../../../redux/actions/window";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import {
   CForm,
@@ -25,11 +25,6 @@ import { addCustomer } from "../../../redux/actions/customer";
 const AddCustomer = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { customer } = useSelector((state) => state.customer);
-
-  useEffect(() => {
-    if (!customer.id) history.push("/properties/customer");
-  });
 
   const validationSchema = function (values) {
     return Yup.object().shape({

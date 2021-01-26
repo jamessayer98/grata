@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { CCardBody, CButton } from "@coreui/react";
+import { CCardHeader, CCardTitle, CCardBody, CButton, CCard } from "@coreui/react";
 import EditUser from "./EditUser";
 import UsersTable from "./UsersTable";
 
@@ -13,16 +13,18 @@ const Users = () => {
   };
 
   return (
-    <CCardBody>
-      <CButton onClick={handleAddUser} color="primary" className="mb-2">
-        + Add User
-      </CButton>
-      <UsersTable setHandleEditModal={setHandleEditModal} />
-      <EditUser
-        handleEditModal={handleEditModal}
-        setHandleEditModal={setHandleEditModal}
-      />
-    </CCardBody>
+    <CCard>
+      <CCardHeader>
+        <CCardTitle>Users</CCardTitle>
+      </CCardHeader>
+      <CCardBody>
+        <CButton onClick={handleAddUser} color="primary" className="mb-2">
+          + Add User
+        </CButton>
+        <UsersTable setHandleEditModal={setHandleEditModal} />
+        <EditUser handleEditModal={handleEditModal} setHandleEditModal={setHandleEditModal} />
+      </CCardBody>
+    </CCard>
   );
 };
 

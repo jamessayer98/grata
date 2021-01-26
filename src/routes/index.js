@@ -41,6 +41,7 @@ const routes = [
     path: "/properties/customer",
     name: "Customer",
     component: Customer,
+    exact: true,
   },
   {
     path: "/properties/customer/add",

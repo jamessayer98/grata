@@ -36,7 +36,7 @@ const App = () => {
       dispatch(getUsers());
       dispatch(getCustomers());
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <HashRouter>

@@ -25,7 +25,7 @@ const Unit = () => {
 
   useEffect(() => {
     if (!building.id) history.push("/properties/customer");
-  }, []);
+  }, [building, history]);
 
   useEffect(() => {
     if (building && building.id) {

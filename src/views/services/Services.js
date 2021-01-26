@@ -5,8 +5,8 @@ import ServicesTable from "./ServicesTable";
 const Services = () => {
   return (
     <div className="services">
-      <ServicesTable />
       <ServicesForm />
+      <ServicesTable />
     </div>
   );
 };

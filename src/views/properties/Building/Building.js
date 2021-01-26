@@ -23,7 +23,7 @@ const Building = () => {
 
   useEffect(() => {
     if (!customer.id) history.push("/properties/customer");
-  }, []);
+  }, [customer, history]);
 
   useEffect(() => {
     if (customer && customer.id) {

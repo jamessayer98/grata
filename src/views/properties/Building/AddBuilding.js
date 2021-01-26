@@ -34,7 +34,7 @@ const AddBuilding = () => {
     if (!customer.id) {
       history.push("/properties/customer");
     }
-  }, []);
+  }, [customer, history]);
 
   const validationSchema = function (values) {
     return Yup.object().shape({

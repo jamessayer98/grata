@@ -1,14 +1,7 @@
 // Here you can add other styles
 
-.services {
-  &-form {
-    &__body {
-      overflow-y: scroll;
-      height: 15.5rem;
-    }
-  }
-
-  &-table {
-    height: 26rem;
-  }
+.comment {
+  border: 1px solid #e4e7ea;
+  overflow-y: scroll;
+  height: 18rem;
 }
