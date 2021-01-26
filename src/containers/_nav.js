@@ -16,27 +16,10 @@ export default [
     icon: <CIcon content={freeSet.cilUser} customClasses="c-sidebar-nav-icon" />,
   },
   {
-    _tag: "CSidebarNavDropdown",
+    _tag: "CSidebarNavItem",
     name: "Properties",
-    to: "/properties",
+    to: "/properties/customer",
     icon: <CIcon content={freeSet.cilCog} customClasses="c-sidebar-nav-icon" />,
-    _children: [
-      {
-        _tag: "CSidebarNavItem",
-        name: "Customer",
-        to: "/properties/customer",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Building",
-        to: "/properties/building",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Unit",
-        to: "/properties/unit",
-      },
-    ],
   },
   {
     _tag: "CSidebarNavItem",

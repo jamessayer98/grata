@@ -4,7 +4,6 @@ const Dashboard = React.lazy(() => import("../views/dashboard/Dashboard"));
 const Users = React.lazy(() => import("../views/users/Users"));
 const AddUser = React.lazy(() => import("../views/users/AddUser"));
 
-const Properties = React.lazy(() => import("../views/properties/Properties"));
 const Customer = React.lazy(() => import("../views/properties/Customer/Customer"));
 const AddCustomer = React.lazy(() => import("../views/properties/Customer/AddCustomer"));
 const EditCustomer = React.lazy(() => import("../views/properties/Customer/EditCustomer"));
@@ -39,16 +38,9 @@ const routes = [
     exact: true,
   },
   {
-    path: "/properties",
-    name: "Properties",
-    component: Properties,
-    exact: true,
-  },
-  {
     path: "/properties/customer",
     name: "Customer",
     component: Customer,
-    exact: true,
   },
   {
     path: "/properties/customer/add",
