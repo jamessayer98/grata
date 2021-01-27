@@ -1,11 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import {
-  GET_BUILDING,
-  ADD_BUILDING,
-  EDIT_BUILDING,
-  GET_ALLBUILDINGS,
-  GET_CUSTOMBUILDINGS,
-} from "../constants";
+import { GET_BUILDING, ADD_BUILDING, EDIT_BUILDING, GET_BUILDINGS } from "../constants";
 import { requestSuccess, requestFail, requestPending } from "../../utils/status";
 
 const initialState = {
@@ -43,28 +37,16 @@ export default createReducer(initialState, {
     error: null,
   }),
 
-  [requestSuccess(GET_ALLBUILDINGS)]: (state, { payload }) => ({
-    ...state,
-    status: requestSuccess(GET_ALLBUILDINGS),
-    buildings: payload,
-  }),
-
-  [requestFail(GET_ALLBUILDINGS)]: (state, { payload }) => ({
-    ...state,
-    status: requestPending(GET_ALLBUILDINGS),
-    error: null,
-  }),
-
-  [requestSuccess(GET_CUSTOMBUILDINGS)]: (state, { payload }) => ({
+  [requestSuccess(GET_BUILDINGS)]: (state, { payload }) => ({
     ...state,
     buildings: payload,
-    status: requestSuccess(GET_CUSTOMBUILDINGS),
+    status: requestSuccess(GET_BUILDINGS),
   }),
 
-  [requestFail(GET_CUSTOMBUILDINGS)]: (state, { payload }) => ({
+  [requestFail(GET_BUILDINGS)]: (state, { payload }) => ({
     ...state,
     buildings: payload,
-    status: requestPending(GET_CUSTOMBUILDINGS),
+    status: requestPending(GET_BUILDINGS),
     error: null,
   }),
 });

@@ -14,15 +14,14 @@ export const ADD_BUILDING = "ADD_BUILDING";
 export const EDIT_BUILDING = "EDIT_BUILDING";
 export const REMOVE_BUILDING = "REMOVE_BUILDING";
 export const GET_BUILDING = "GET_BUILDING";
-export const GET_ALLBUILDINGS = "GET_ALLBUILDINGS";
-export const GET_CUSTOMBUILDINGS = "GET_CUSTOMBUILDINGS";
+export const GET_BUILDINGS = "GET_BUILDINGS";
 
 export const ADD_UNIT = "ADD_UNIT";
 export const EDIT_UNIT = "EDIT_UNIT";
 export const REMOVE_UNIT = "REMOVE_UNIT";
 export const GET_UNIT = "GET_UNIT";
-export const GET_ALLUNITS = "GET_ALLUNITS";
-export const GET_CUSTOMUNITS = "GET_CUSTOMUNITS";
+export const GET_UNITS = "GET_UNITS";
+export const SET_UNIT_FLAG = "SET_UNIT_FLAG";
 
 export const ADD_AVATAR = "ADD_AVATAR";
 export const GET_AVATAR = "GET_AVATAR";

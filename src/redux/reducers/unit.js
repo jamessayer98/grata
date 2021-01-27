@@ -1,17 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
-import {
-  GET_UNIT,
-  GET_ALLUNITS,
-  GET_CUSTOMUNITS,
-  REMOVE_UNIT,
-  EDIT_UNIT,
-  ADD_UNIT,
-} from "../constants";
+import { GET_UNIT, GET_UNITS, REMOVE_UNIT, EDIT_UNIT, ADD_UNIT, SET_UNIT_FLAG } from "../constants";
 import { requestSuccess, requestFail } from "../../utils/status";
 
 const initialState = {
   units: [],
   unit: {},
+  unitFlag: false,
   status: "INIT",
   params: {
     page: 1,
@@ -25,16 +19,9 @@ export default createReducer(initialState, {
     unit: payload,
   }),
 
-  [requestSuccess(GET_ALLUNITS)]: (state, { payload }) => ({
+  [SET_UNIT_FLAG]: (state, { payload }) => ({
     ...state,
-    status: requestSuccess(GET_ALLUNITS),
-    error: null,
-  }),
-
-  [requestFail(GET_ALLUNITS)]: (state, { payload }) => ({
-    ...state,
-    status: requestFail(GET_ALLUNITS),
-    error: payload.error,
+    unitFlag: payload,
   }),
 
   [requestSuccess(ADD_UNIT)]: (state, { payload }) => ({
@@ -73,16 +60,16 @@ export default createReducer(initialState, {
     error: payload.error,
   }),
 
-  [requestSuccess(GET_CUSTOMUNITS)]: (state, { payload }) => ({
+  [requestSuccess(GET_UNITS)]: (state, { payload }) => ({
     ...state,
-    status: requestSuccess(GET_CUSTOMUNITS),
+    status: requestSuccess(GET_UNITS),
     units: payload,
     error: null,
   }),
 
-  [requestFail(GET_CUSTOMUNITS)]: (state, { payload }) => ({
+  [requestFail(GET_UNITS)]: (state, { payload }) => ({
     ...state,
-    status: requestFail(GET_CUSTOMUNITS),
+    status: requestFail(GET_UNITS),
     units: [],
     error: payload.error,
   }),

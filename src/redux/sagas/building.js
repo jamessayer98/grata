@@ -1,5 +1,5 @@
 import { takeLatest } from "redux-saga/effects";
-import { ADD_BUILDING, EDIT_BUILDING, GET_ALLBUILDINGS, GET_CUSTOMBUILDINGS } from "../constants";
+import { ADD_BUILDING, EDIT_BUILDING, GET_BUILDINGS } from "../constants";
 import apiCall from "../../utils/apiCall";
 
 const addBuilding = apiCall({
@@ -14,14 +14,8 @@ const editBuilding = apiCall({
   path: ({ id }) => `/buildings/${id}`,
 });
 
-const getAllBuildings = apiCall({
-  type: GET_ALLBUILDINGS,
-  method: "get",
-  path: "/buildings",
-});
-
-const getCustomBuildings = apiCall({
-  type: GET_CUSTOMBUILDINGS,
+const getBuildings = apiCall({
+  type: GET_BUILDINGS,
   method: "get",
   path: ({ id }) => `/orgs/${id}/buildings`,
 });
@@ -29,6 +23,5 @@ const getCustomBuildings = apiCall({
 export default function* buildingSaga() {
   yield takeLatest(ADD_BUILDING, addBuilding);
   yield takeLatest(EDIT_BUILDING, editBuilding);
-  yield takeLatest(GET_CUSTOMBUILDINGS, getCustomBuildings);
-  yield takeLatest(GET_ALLBUILDINGS, getAllBuildings);
+  yield takeLatest(GET_BUILDINGS, getBuildings);
 }

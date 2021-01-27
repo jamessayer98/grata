@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import Building from "./BuildingTable/Building";
 import Unit from "./UnitTable/Unit";
 
 const Org = () => {
-  const [handleUnit, setHandleUnit] = useState(false);
+  const { unitFlag } = useSelector((state) => state.unit);
 
   return (
     <>
-      <Building setHandleUnit={setHandleUnit} />
-      {handleUnit ? <Unit /> : null}
+      <Building />
+      {unitFlag ? <Unit /> : null}
     </>
   );
 };

@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCustomBuildings, getBuilding } from "../../../../redux/actions/building";
+import { getBuildings, getBuilding } from "../../../../redux/actions/building";
+import { setUnitFlag } from "../../../../redux/actions/unit";
 import { CCard, CCardTitle, CCardHeader, CCardBody, CButton, CDataTable } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
 
-const Building = (props) => {
+const Building = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { setHandleUnit } = props;
   const { buildings } = useSelector((state) => state.building);
   const { customer } = useSelector((state) => state.customer);
 
   useEffect(() => {
     if (customer && customer.id) {
-      dispatch(getCustomBuildings({ id: customer.id }));
+      dispatch(getBuildings({ id: customer.id }));
     }
   }, [customer, dispatch]);
 
@@ -43,7 +43,7 @@ const Building = (props) => {
   const handleRowClick = (item, index, col, e) => {
     if (col !== "edit") {
       dispatch(getBuilding(buildings[index]));
-      setHandleUnit(true);
+      dispatch(setUnitFlag(true));
     }
   };
 

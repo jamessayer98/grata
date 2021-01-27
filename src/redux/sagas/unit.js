@@ -1,5 +1,5 @@
 import { takeLatest } from "redux-saga/effects";
-import { ADD_UNIT, EDIT_UNIT, GET_ALLUNITS, GET_CUSTOMUNITS } from "../constants";
+import { ADD_UNIT, EDIT_UNIT, GET_UNITS } from "../constants";
 import apiCall from "../../utils/apiCall";
 
 const addUnit = apiCall({
@@ -14,14 +14,8 @@ const editUnit = apiCall({
   path: ({ id }) => `/units/${id}`,
 });
 
-const getAllUnits = apiCall({
-  type: GET_ALLUNITS,
-  method: "get",
-  path: "/buildings",
-});
-
-const getCustomUnits = apiCall({
-  type: GET_CUSTOMUNITS,
+const getUnits = apiCall({
+  type: GET_UNITS,
   method: "get",
   path: ({ id }) => `/buildings/${id}/units`,
 });
@@ -29,6 +23,5 @@ const getCustomUnits = apiCall({
 export default function* unitSaga() {
   yield takeLatest(ADD_UNIT, addUnit);
   yield takeLatest(EDIT_UNIT, editUnit);
-  yield takeLatest(GET_CUSTOMUNITS, getCustomUnits);
-  yield takeLatest(GET_ALLUNITS, getAllUnits);
+  yield takeLatest(GET_UNITS, getUnits);
 }

@@ -6,13 +6,12 @@ import { TheSidebar, TheAside, TheFooter, TheHeader, TheContent } from "./contai
 import { setIsLoggedIn } from "./redux/actions/auth";
 import { getUsers } from "./redux/actions/user";
 import { getCustomers } from "./redux/actions/customer";
-import { getCustomBuildings } from "./redux/actions/building";
+import { getBuildings } from "./redux/actions/building";
 
 import "./scss/style.scss";
 
 const Login = React.lazy(() => import("./views/pages/login/Login"));
 // const Page404 = React.lazy(() => import("./views/pages/page404/Page404"));
-// const firebaseAuth = getAuth();
 
 const loading = (
   <div className="pt-3 text-center">
@@ -35,7 +34,7 @@ const App = () => {
       dispatch(setIsLoggedIn({ isLoggedIn: true }));
       dispatch(getUsers());
       dispatch(getCustomers());
-      dispatch(getCustomBuildings({ id: orgId }));
+      dispatch(getBuildings({ id: orgId }));
     }
   }, [dispatch]);
 

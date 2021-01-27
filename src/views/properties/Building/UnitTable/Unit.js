@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCustomUnits } from "../../../../redux/actions/unit";
+import { getUnits, getUnit } from "../../../../redux/actions/unit";
 import { CCard, CCardHeader, CCardBody, CButton, CDataTable, CCardTitle } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
 import { useHistory } from "react-router-dom";
-import { getUnit } from "../../../../redux/actions/unit";
 
 const Unit = () => {
   const { building } = useSelector((state) => state.building);
@@ -16,7 +15,7 @@ const Unit = () => {
 
   useEffect(() => {
     if (building && building.id) {
-      dispatch(getCustomUnits({ id: building.id }));
+      dispatch(getUnits({ id: building.id }));
     }
   }, [dispatch, building]);
 
