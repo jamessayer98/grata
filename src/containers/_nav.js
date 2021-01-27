@@ -43,7 +43,7 @@ export const navigation = [
   },
 ];
 
-if (roleId === "3") {
+if (roleId === "99") {
   navigation[2]._children.unshift({
     _tag: "CSidebarNavItem",
     name: "Customer",

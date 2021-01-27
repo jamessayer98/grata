@@ -270,8 +270,8 @@ const AddUser = () => {
                           >
                             <option value={null}>Please Select</option>
                             <option value={1}>User</option>
-                            <option value={2}>Admin</option>
-                            <option value={3}>Super Admin</option>
+                            <option value={2}>Manager</option>
+                            <option value={3}>Admin</option>
                           </CSelect>
                           <CInvalidFeedback>{errors.role_id}</CInvalidFeedback>
                         </CCol>

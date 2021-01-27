@@ -55,6 +55,8 @@ const UsersTable = (props) => {
           if (item.role_id === 1) {
             return <td>User</td>;
           } else if (item.role_id === 2) {
+            return <td>Manager</td>;
+          } else if (item.role_id === 3) {
             return <td>Admin</td>;
           } else {
             return <td>Super Admin</td>;

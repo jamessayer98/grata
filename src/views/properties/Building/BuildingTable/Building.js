@@ -57,7 +57,7 @@ const Building = () => {
           + Add Building
         </CButton>
         <CDataTable
-          items={buildings}
+          items={buildings || []}
           fields={fields}
           columnFilter
           tableFilter
