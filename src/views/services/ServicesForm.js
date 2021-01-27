@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from "../../components/Image";
 import Message from "../../components/Message";
 import { getAvatar } from "../../redux/actions/user";
-import { addComment } from "../../redux/actions/services";
+import { addComment, addCommentDynamic } from "../../redux/actions/services";
 import { setToast } from "../../redux/actions/window";
 import {
   CCard,
@@ -73,6 +73,7 @@ const ServicesForm = () => {
           comment: values.comment,
         },
         success: () => {
+          dispatch(addCommentDynamic(values.comment));
           dispatch(
             setToast({
               toastShow: true,
@@ -188,59 +189,62 @@ const ServicesForm = () => {
               comments.map((comment, index) => {
                 return <Message className="comment-message" comment={comment} key={index} />;
               })}
+
+            {hyperLink ? (
+              <>
+                <CRow>
+                  <Formik
+                    initialValues={initialValues}
+                    validate={validate(validationSchema)}
+                    onSubmit={onSubmit}
+                  >
+                    {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+                      <CForm onSubmit={handleSubmit} noValidate name="CommentForm">
+                        <CFormGroup>
+                          <CRow>
+                            <CCol xs="6" lg="9">
+                              <CInput
+                                className="ml-3"
+                                type="text"
+                                id="comment"
+                                name="comment"
+                                placeholder="Enter new comment.."
+                                valid={!errors.comment}
+                                invalid={touched.comment && !!errors.comment}
+                                required
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.comment}
+                              />
+                              <CInvalidFeedback className="pl-3">{errors.comment}</CInvalidFeedback>
+                            </CCol>
+                            <CCol xs="6" lg="3">
+                              <CButton type="submit" color="primary" className="px-4">
+                                Submit
+                              </CButton>
+                            </CCol>
+                          </CRow>
+                        </CFormGroup>
+                      </CForm>
+                    )}
+                  </Formik>
+                </CRow>
+              </>
+            ) : null}
           </CCol>
         </CRow>
         {hyperLink ? (
-          <>
-            <CRow className="mt-2">
-              <Formik
-                initialValues={initialValues}
-                validate={validate(validationSchema)}
-                onSubmit={onSubmit}
+          <CRow>
+            <CCol className="ml-2">
+              <CButton
+                type="button"
+                className="btn btn-primary"
+                onClick={() => setHyperLink(false)}
               >
-                {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
-                  <CForm onSubmit={handleSubmit} noValidate name="CommentForm">
-                    <CFormGroup>
-                      <CRow>
-                        <CCol xs="6" lg="9">
-                          <CInput
-                            className="ml-3"
-                            type="text"
-                            id="comment"
-                            name="comment"
-                            placeholder="Enter new comment.."
-                            valid={!errors.comment}
-                            invalid={touched.comment && !!errors.comment}
-                            required
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.comment}
-                          />
-                          <CInvalidFeedback className="pl-3">{errors.comment}</CInvalidFeedback>
-                        </CCol>
-                        <CCol xs="6" lg="3">
-                          <CButton type="submit" color="primary" className="px-4">
-                            Submit
-                          </CButton>
-                        </CCol>
-                      </CRow>
-                    </CFormGroup>
-                  </CForm>
-                )}
-              </Formik>
-            </CRow>
-            <CRow>
-              <CCol className="ml-2">
-                <CButton
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => setHyperLink(false)}
-                >
-                  Less ...
-                </CButton>
-              </CCol>
-            </CRow>
-          </>
+                Less ...
+              </CButton>
+            </CCol>
+          </CRow>
         ) : (
           <CRow>
             <CCol className="ml-2">

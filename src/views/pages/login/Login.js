@@ -60,7 +60,7 @@ const Login = () => {
   };
 
   const initialValues = {
-    email: localStorage.getItem("user") ? localStorage.getItem("user") : "",
+    email: localStorage.getItem("email") ? localStorage.getItem("email") : "",
     password: "",
   };
 
@@ -73,6 +73,7 @@ const Login = () => {
         body: { email: values.email, password: values.password },
         success: () => {
           localStorage.setItem("user", values.email);
+
           dispatch(
             setToast({
               toastShow: true,

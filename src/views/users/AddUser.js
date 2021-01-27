@@ -23,12 +23,14 @@ import {
   CCard,
   CCardTitle,
 } from "@coreui/react";
+import { ROLE_MAP } from "../../utils/role";
 import * as Yup from "yup";
 
 const AddUser = () => {
   const { imgUrl } = useSelector((state) => state.user);
   const history = useHistory();
   const dispatch = useDispatch();
+  const { roleId } = useSelector((state) => state.auth);
 
   const validationSchema = function (values) {
     return Yup.object().shape({
@@ -269,9 +271,11 @@ const AddUser = () => {
                             id="role_id"
                           >
                             <option value={null}>Please Select</option>
-                            <option value={1}>User</option>
-                            <option value={2}>Manager</option>
-                            <option value={3}>Admin</option>
+                            {ROLE_MAP.filter((map) => map.value <= roleId).map((role, index) => (
+                              <option key={index} value={role.value}>
+                                {role.name}
+                              </option>
+                            ))}
                           </CSelect>
                           <CInvalidFeedback>{errors.role_id}</CInvalidFeedback>
                         </CCol>

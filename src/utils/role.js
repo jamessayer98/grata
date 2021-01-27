@@ -1,11 +1,18 @@
-export default {
-	User: "user",
-	Admin: "admin",
-	SuperAdmin: "superadmin",
-};
-
-export const ROLE_MAP = {
-	1: "user",
-	2: "admin",
-	3: "superadmin",
-};
+export const ROLE_MAP = [
+  {
+    value: 1,
+    name: "User",
+  },
+  {
+    value: 2,
+    name: "Manager",
+  },
+  {
+    value: 3,
+    name: "Admin",
+  },
+  {
+    value: 99,
+    name: "Super Admin",
+  },
+];

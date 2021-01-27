@@ -35,6 +35,7 @@ export const GET_SERVICES = "GET_SERVICES";
 export const GET_SERVICE = "GET_SERVICE";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const GET_COMMENT_ID = "GET_COMMENT_ID";
+export const ADD_COMMENT_DYNAMIC = "ADD_COMMENT_DYNAMIC";
 
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
@@ -43,6 +44,7 @@ export const FETCH_REFRESH_TOKEN = "FETCH_REFRESH_TOKEN";
 export const SET_REFRESH_TOKEN = "SET_REFRESH_TOKEN";
 export const SET_ID_TOKEN = "SET_ID_TOKEN";
 export const SET_IS_LOGGED_IN = "SET_IS_LOGGED_IN";
+export const SET_ROLE_ID = "SET_ROLE_ID";
 
 export const GET_COUNTRY = "GET_COUNTRY";
 export const GET_STATE = "GET_STATE";

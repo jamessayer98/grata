@@ -4,12 +4,9 @@ import {
   GET_SERVICE,
   ADD_COMMENT,
   GET_COMMENT_ID,
+  ADD_COMMENT_DYNAMIC,
 } from "../constants";
-import {
-  requestSuccess,
-  requestPending,
-  requestFail,
-} from "../../utils/status";
+import { requestSuccess, requestPending, requestFail } from "../../utils/status";
 
 const initialState = {
   servicesList: [],
@@ -23,6 +20,23 @@ export default createReducer(initialState, {
     ...state,
     commentId: payload,
   }),
+
+  [ADD_COMMENT_DYNAMIC]: (state, { payload }) => {
+    const date = new Date().toISOString();
+
+    return {
+      ...state,
+      comments: [
+        ...state.comments,
+        {
+          first_name: localStorage.getItem("firstname"),
+          last_name: localStorage.getItem("lastname"),
+          create_date: date,
+          comment: payload,
+        },
+      ],
+    };
+  },
 
   [requestSuccess(GET_SERVICES)]: (state, { payload }) => ({
     ...state,

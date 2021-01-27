@@ -3,7 +3,7 @@ import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
 import { TheSidebar, TheAside, TheFooter, TheHeader, TheContent } from "./containers/index";
-import { setIsLoggedIn } from "./redux/actions/auth";
+import { setIsLoggedIn, setRoleId } from "./redux/actions/auth";
 import { getUsers } from "./redux/actions/user";
 import { getCustomers } from "./redux/actions/customer";
 import { getBuildings } from "./redux/actions/building";
@@ -29,12 +29,14 @@ const App = () => {
     const idToken = localStorage.getItem("idToken") || "";
     const refreshToken = localStorage.getItem("refreshToken") || "";
     const orgId = localStorage.getItem("orgId") || "";
+    const roleId = parseInt(localStorage.getItem("roleId"), 10) || "";
 
     if (idToken || refreshToken) {
       dispatch(setIsLoggedIn({ isLoggedIn: true }));
       dispatch(getUsers());
       dispatch(getCustomers());
       dispatch(getBuildings({ id: orgId }));
+      dispatch(setRoleId(roleId));
     }
   }, [dispatch]);
 
