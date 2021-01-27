@@ -10,7 +10,7 @@ const Message = (props) => {
 
       <CCol>
         <CAlert color="dark" style={{ padding: "0.1rem" }}>
-          <span className="h10">
+          <span className="h6">
             {comment.first_name} {comment.last_name}, {comment.create_date}
           </span>
           <p className="h6">{comment.comment}</p>

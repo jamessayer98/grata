@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setToast } from "../../../../redux/actions/window";
@@ -28,14 +28,7 @@ import * as Yup from "yup";
 const AddBuilding = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { building } = useSelector((state) => state.building);
   const { orgId } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (!building.id) {
-      history.push("/properties/building");
-    }
-  }, [building, history]);
 
   const validationSchema = function (values) {
     return Yup.object().shape({

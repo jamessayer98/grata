@@ -220,7 +220,7 @@ const ServicesForm = () => {
                         </CCol>
                         <CCol xs="6" lg="3">
                           <CButton type="submit" color="primary" className="px-4">
-                            <h10>Submit</h10>
+                            Submit
                           </CButton>
                         </CCol>
                       </CRow>
@@ -236,7 +236,7 @@ const ServicesForm = () => {
                   className="btn btn-primary"
                   onClick={() => setHyperLink(false)}
                 >
-                  <h10>Less ...</h10>
+                  Less ...
                 </CButton>
               </CCol>
             </CRow>
@@ -246,10 +246,10 @@ const ServicesForm = () => {
             <CCol className="ml-2">
               <CButton
                 type="button"
-                className="h10 btn btn-primary"
+                className="h6 btn btn-primary"
                 onClick={() => setHyperLink(true)}
               >
-                <h10>Add Comment</h10>
+                <h6>Add Comment</h6>
               </CButton>
             </CCol>
           </CRow>

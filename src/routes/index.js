@@ -72,6 +72,11 @@ const routes = [
     component: EditBuilding,
   },
   {
+    path: "/properties/unit",
+    name: "Unit",
+    exact: true,
+  },
+  {
     path: "/properties/unit/add",
     name: "AddUnit",
     component: AddUnit,

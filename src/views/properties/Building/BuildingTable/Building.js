@@ -10,12 +10,8 @@ const Building = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { setHandleUnit } = props;
-  const { buildings, building } = useSelector((state) => state.building);
+  const { buildings } = useSelector((state) => state.building);
   const { customer } = useSelector((state) => state.customer);
-
-  useEffect(() => {
-    if (!building.id) history.push("/properties/building");
-  }, [building, history]);
 
   useEffect(() => {
     if (customer && customer.id) {
