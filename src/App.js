@@ -3,9 +3,10 @@ import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
 import { TheSidebar, TheAside, TheFooter, TheHeader, TheContent } from "./containers/index";
-import { setIdToken, setIsLoggedIn, setRefreshToken } from "./redux/actions/auth";
+import { setIsLoggedIn } from "./redux/actions/auth";
 import { getUsers } from "./redux/actions/user";
 import { getCustomers } from "./redux/actions/customer";
+import { getCustomBuildings } from "./redux/actions/building";
 
 import "./scss/style.scss";
 
@@ -28,13 +29,13 @@ const App = () => {
   useEffect(() => {
     const idToken = localStorage.getItem("idToken") || "";
     const refreshToken = localStorage.getItem("refreshToken") || "";
+    const orgId = localStorage.getItem("orgId") || "";
 
     if (idToken || refreshToken) {
-      dispatch(setIdToken({ idToken: idToken }));
-      dispatch(setRefreshToken({ refreshToken: refreshToken }));
       dispatch(setIsLoggedIn({ isLoggedIn: true }));
       dispatch(getUsers());
       dispatch(getCustomers());
+      dispatch(getCustomBuildings({ id: orgId }));
     }
   }, [dispatch]);
 

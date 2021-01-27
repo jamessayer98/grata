@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { setToast } from "../../../redux/actions/window";
 import { useDispatch, useSelector } from "react-redux";
+import { setToast } from "../../../../redux/actions/window";
+import { list } from "../../../../utils/list";
+import { addBuilding } from "../../../../redux/actions/building";
 import { Formik } from "formik";
 import {
   CForm,
@@ -15,27 +17,25 @@ import {
   CInvalidFeedback,
   CLabel,
   CInput,
-  CCardHeader,
-  CCardTitle,
   CCardBody,
   CCard,
   CSelect,
+  CCardTitle,
+  CCardHeader,
 } from "@coreui/react";
 import * as Yup from "yup";
-import { list } from "../../../utils/list";
-import { editBuilding } from "../../../redux/actions/building";
 
-const EditBuilding = () => {
+const AddBuilding = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { building } = useSelector((state) => state.building);
-  const { customer } = useSelector((state) => state.customer);
+  const { orgId } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (!customer.id) {
-      history.push("/properties/customer");
+    if (!building.id) {
+      history.push("/properties/building");
     }
-  }, [customer, history]);
+  }, [building, history]);
 
   const validationSchema = function (values) {
     return Yup.object().shape({
@@ -72,25 +72,29 @@ const EditBuilding = () => {
   };
 
   const initialValues = {
-    name: building.name,
-    address: building.address,
-    city: building.city,
-    state: building.state,
-    zip: building.zip,
-    country: building.country,
+    name: "",
+    address: "",
+    city: "",
+    zip: "",
+    state: "AB",
+    country: "CA",
   };
 
   const onSubmit = (values) => {
+    const subValues = {
+      ...values,
+      org_id: orgId,
+    };
+
     dispatch(
-      editBuilding({
-        id: building.id,
-        body: values,
+      addBuilding({
+        body: subValues,
         success: () => {
           history.push("/properties/building");
           dispatch(
             setToast({
               toastShow: true,
-              toastMessage: "Building Udpated Successfully!",
+              toastMessage: "You successfully created new building!",
             })
           );
         },
@@ -98,7 +102,7 @@ const EditBuilding = () => {
           dispatch(
             setToast({
               toastShow: true,
-              toastMessage: "Buliding Update Failed!",
+              toastMessage: "Building creating Failed!",
             })
           );
         },
@@ -107,13 +111,13 @@ const EditBuilding = () => {
   };
 
   return (
-    <CContainer>
+    <CContainer className="mb-4">
       <CRow>
         <CCol className="offset-3 col-6">
           <CCardGroup>
             <CCard>
               <CCardHeader>
-                <CCardTitle>Edit Building</CCardTitle>
+                <CCardTitle>Add New Building</CCardTitle>
               </CCardHeader>
               <CCardBody>
                 <Formik
@@ -122,32 +126,17 @@ const EditBuilding = () => {
                   onSubmit={onSubmit}
                 >
                   {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
-                    <CForm onSubmit={handleSubmit} noValidate name="EditBuildingForm">
+                    <CForm onSubmit={handleSubmit} noValidate name="AddBulidingForm">
                       <CRow className="mt-4">
                         <CCol>
                           <CFormGroup>
-                            <CLabel htmlFor="org_id">Customer</CLabel>
-                            <CInputGroup className="mb-3">
-                              <CInput
-                                type="text"
-                                id="org_id"
-                                name="org_id"
-                                disabled
-                                value={customer.name}
-                              />
-                            </CInputGroup>
-                            <CInvalidFeedback>{errors.org_id}</CInvalidFeedback>
-                          </CFormGroup>
-                        </CCol>
-                        <CCol>
-                          <CFormGroup>
-                            <CLabel htmlFor="name">Name</CLabel>
+                            <CLabel htmlFor="nf-name">Name</CLabel>
                             <CInputGroup className="mb-3">
                               <CInput
                                 type="text"
                                 id="name"
                                 name="name"
-                                placeholde="Name..."
+                                placeholder="Name..."
                                 autoComplete="text"
                                 valid={!errors.name}
                                 invalid={touched.name && !!errors.name}
@@ -156,14 +145,14 @@ const EditBuilding = () => {
                                 onBlur={handleBlur}
                                 value={values.name}
                               />
+                              <CInvalidFeedback>{errors.name}</CInvalidFeedback>
                             </CInputGroup>
-                            <CInvalidFeedback>{errors.name}</CInvalidFeedback>
                           </CFormGroup>
                         </CCol>
                       </CRow>
                       <CFormGroup row>
                         <CCol>
-                          <CLabel htmlFor="address">Address</CLabel>
+                          <CLabel htmlFor="nf-address">Address</CLabel>
                           <CInputGroup className="mb-3">
                             <CInput
                               type="text"
@@ -206,7 +195,7 @@ const EditBuilding = () => {
                       <CRow>
                         <CCol>
                           <CFormGroup>
-                            <CLabel htmlFor="nf-state">State</CLabel>
+                            <CLabel htmlFor="state">State</CLabel>
                             <CSelect
                               onBlur={handleBlur}
                               onChange={handleChange}
@@ -215,7 +204,6 @@ const EditBuilding = () => {
                               id="state"
                               valid={!errors.state}
                               invalid={touched.state && !!errors.state}
-                              value={values.state}
                             >
                               {list
                                 .find((country) => {
@@ -263,7 +251,6 @@ const EditBuilding = () => {
                             id="country"
                             valid={!errors.country}
                             invalid={touched.country && !!errors.country}
-                            value={values.country}
                           >
                             {list.map((item, index) => (
                               <option value={item.abbreviation} key={index}>
@@ -276,7 +263,7 @@ const EditBuilding = () => {
                       </CFormGroup>
                       <CFormGroup className="text-right">
                         <CButton color="primary" type="submit">
-                          Update
+                          Add
                         </CButton>{" "}
                         <CButton
                           color="secondary"
@@ -299,4 +286,4 @@ const EditBuilding = () => {
   );
 };
 
-export default EditBuilding;
+export default AddBuilding;

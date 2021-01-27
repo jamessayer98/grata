@@ -1,20 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCustomUnits } from "../../../redux/actions/unit";
-import {
-  CCard,
-  CCardHeader,
-  CCardBody,
-  CButton,
-  CDataTable,
-  CRow,
-  CCol,
-  CCardTitle,
-} from "@coreui/react";
+import { getCustomUnits } from "../../../../redux/actions/unit";
+import { CCard, CCardHeader, CCardBody, CButton, CDataTable, CCardTitle } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
 import { useHistory } from "react-router-dom";
-import { getUnit } from "../../../redux/actions/unit";
+import { getUnit } from "../../../../redux/actions/unit";
 
 const Unit = () => {
   const { building } = useSelector((state) => state.building);
@@ -22,10 +13,6 @@ const Unit = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-
-  useEffect(() => {
-    if (!building.id) history.push("/properties/customer");
-  }, [building, history]);
 
   useEffect(() => {
     if (building && building.id) {
@@ -54,8 +41,6 @@ const Unit = () => {
     history.push("/properties/unit/edit");
   };
 
-  const handleRemove = () => {};
-
   return (
     <CCard>
       <CCardHeader>
@@ -82,19 +67,10 @@ const Unit = () => {
             },
             edit: (item, index) => {
               return (
-                <td>
-                  <CRow className="">
-                    <CCol col="6" className="text-right">
-                      <CButton onClick={() => handleEdit(index)} size="sm" color="info">
-                        <CIcon content={freeSet.cilPencil} />
-                      </CButton>
-                    </CCol>
-                    <CCol col="6" className="text-left">
-                      <CButton onClick={() => handleRemove(index)} size="sm" color="danger">
-                        <CIcon content={freeSet.cilTrash} />
-                      </CButton>
-                    </CCol>
-                  </CRow>
+                <td className="text-center">
+                  <CButton onClick={() => handleEdit(index)} size="sm" color="info">
+                    <CIcon content={freeSet.cilPencil} />
+                  </CButton>
                 </td>
               );
             },

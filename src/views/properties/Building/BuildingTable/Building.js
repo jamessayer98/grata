@@ -1,29 +1,21 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCustomBuildings, getBuilding } from "../../../redux/actions/building";
-import {
-  CCard,
-  CCardTitle,
-  CCardHeader,
-  CCardBody,
-  CButton,
-  CDataTable,
-  CRow,
-  CCol,
-} from "@coreui/react";
+import { getCustomBuildings, getBuilding } from "../../../../redux/actions/building";
+import { CCard, CCardTitle, CCardHeader, CCardBody, CButton, CDataTable } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
-import { useHistory } from "react-router-dom";
 
-const Building = () => {
-  const { buildings } = useSelector((state) => state.building);
-  const { customer } = useSelector((state) => state.customer);
+const Building = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { setHandleUnit } = props;
+  const { buildings, building } = useSelector((state) => state.building);
+  const { customer } = useSelector((state) => state.customer);
 
   useEffect(() => {
-    if (!customer.id) history.push("/properties/customer");
-  }, [customer, history]);
+    if (!building.id) history.push("/properties/building");
+  }, [building, history]);
 
   useEffect(() => {
     if (customer && customer.id) {
@@ -43,7 +35,7 @@ const Building = () => {
     { key: "edit", _style: { width: "10%" } },
   ];
 
-  const handleAdd = (index) => {
+  const handleAdd = () => {
     history.push("/properties/building/add");
   };
 
@@ -52,12 +44,10 @@ const Building = () => {
     history.push("/properties/building/edit");
   };
 
-  const handleRemove = () => {};
-
   const handleRowClick = (item, index, col, e) => {
     if (col !== "edit") {
       dispatch(getBuilding(buildings[index]));
-      history.push("/properties/unit");
+      setHandleUnit(true);
     }
   };
 
@@ -88,19 +78,10 @@ const Building = () => {
             },
             edit: (item, index) => {
               return (
-                <td>
-                  <CRow className="">
-                    <CCol col="6" className="text-right">
-                      <CButton onClick={() => handleEdit(index)} size="sm" color="info">
-                        <CIcon content={freeSet.cilPencil} />
-                      </CButton>
-                    </CCol>
-                    <CCol col="6" className="text-left">
-                      <CButton onClick={() => handleRemove(index)} size="sm" color="danger">
-                        <CIcon content={freeSet.cilTrash} />
-                      </CButton>
-                    </CCol>
-                  </CRow>
+                <td className="text-center">
+                  <CButton onClick={() => handleEdit(index)} size="sm" color="info">
+                    <CIcon content={freeSet.cilPencil} />
+                  </CButton>
                 </td>
               );
             },

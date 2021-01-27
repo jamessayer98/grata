@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { setToast } from "../../../redux/actions/window";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { setToast } from "../../../../redux/actions/window";
+import { editUnit } from "../../../../redux/actions/unit";
 import { Formik } from "formik";
 import {
   CForm,
@@ -15,23 +16,23 @@ import {
   CInvalidFeedback,
   CLabel,
   CInput,
-  CCardHeader,
   CCardBody,
-  CCardTitle,
   CCard,
+  CCardHeader,
+  CCardTitle,
   CSelect,
 } from "@coreui/react";
 import * as Yup from "yup";
-import { addUnit } from "../../../redux/actions/unit";
 
-const AddUnit = () => {
+const EditUnit = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { building } = useSelector((state) => state.building);
+  const { unit } = useSelector((state) => state.unit);
   const { users } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (!building.id) history.push("/properties/customer");
+    if (!building.id) history.push("/properties/building");
   }, [building, history]);
 
   const validationSchema = function (values) {
@@ -68,12 +69,12 @@ const AddUnit = () => {
   };
 
   const initialValues = {
-    bedrooms: 0,
-    bathrooms: 0,
-    area: 0,
-    owned: false,
-    unit_num: 0,
-    user_id: 0,
+    bedrooms: unit.bedrooms,
+    bathrooms: unit.bathrooms,
+    area: unit.area,
+    owned: unit.owned,
+    unit_num: unit.unit_num,
+    user_id: unit.user_id,
   };
 
   const onSubmit = (values) => {
@@ -81,18 +82,18 @@ const AddUnit = () => {
       ...values,
       owned: values.owned === "true" ? true : false,
       user_id: parseInt(values.user_id, 10),
-      building_id: building.id,
     };
 
     dispatch(
-      addUnit({
+      editUnit({
+        id: unit.id,
         body: subValues,
         success: () => {
           history.push("/properties/unit");
           dispatch(
             setToast({
               toastShow: true,
-              toastMessage: "You successfully created new Unit!",
+              toastMessage: "Unit Successfully Updated!",
             })
           );
         },
@@ -100,7 +101,7 @@ const AddUnit = () => {
           dispatch(
             setToast({
               toastShow: true,
-              toastMessage: "Unit Creating Failed!",
+              toastMessage: "Unit Updating Failed!",
             })
           );
         },
@@ -115,7 +116,7 @@ const AddUnit = () => {
           <CCardGroup>
             <CCard>
               <CCardHeader>
-                <CCardTitle>Add New Unit</CCardTitle>
+                <CCardTitle>Edit Unit</CCardTitle>
               </CCardHeader>
               <CCardBody>
                 <Formik
@@ -232,6 +233,7 @@ const AddUnit = () => {
                               id="owned"
                               valid={!errors.owned}
                               invalid={touched.owned && !!errors.owned}
+                              value={values.owned}
                             >
                               <option value="false">False</option>
                               <option value="true">True</option>
@@ -251,6 +253,7 @@ const AddUnit = () => {
                               name="user_id"
                               valid={!errors.user_id}
                               invalid={touched.user_id && !!errors.user_id}
+                              value={values.user_id}
                             >
                               {users.map((user, index) => {
                                 return (
@@ -266,7 +269,7 @@ const AddUnit = () => {
                       </CRow>
                       <CFormGroup className="text-right">
                         <CButton color="primary" type="submit">
-                          Add
+                          Update
                         </CButton>{" "}
                         <CButton
                           color="secondary"
@@ -289,4 +292,4 @@ const AddUnit = () => {
   );
 };
 
-export default AddUnit;
+export default EditUnit;

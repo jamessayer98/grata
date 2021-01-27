@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { setToast } from "../../../redux/actions/window";
+import { setToast } from "../../../../redux/actions/window";
+import { addUnit } from "../../../../redux/actions/unit";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik } from "formik";
 import {
@@ -15,24 +16,22 @@ import {
   CInvalidFeedback,
   CLabel,
   CInput,
-  CCardBody,
-  CCard,
   CCardHeader,
+  CCardBody,
   CCardTitle,
+  CCard,
   CSelect,
 } from "@coreui/react";
 import * as Yup from "yup";
-import { editUnit } from "../../../redux/actions/unit";
 
-const EditUnit = () => {
+const AddUnit = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { building } = useSelector((state) => state.building);
-  const { unit } = useSelector((state) => state.unit);
   const { users } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (!building.id) history.push("/properties/customer");
+    if (!building.id) history.push("/properties/building");
   }, [building, history]);
 
   const validationSchema = function (values) {
@@ -69,12 +68,12 @@ const EditUnit = () => {
   };
 
   const initialValues = {
-    bedrooms: unit.bedrooms,
-    bathrooms: unit.bathrooms,
-    area: unit.area,
-    owned: unit.owned,
-    unit_num: unit.unit_num,
-    user_id: unit.user_id,
+    bedrooms: 0,
+    bathrooms: 0,
+    area: 0,
+    owned: false,
+    unit_num: 0,
+    user_id: 0,
   };
 
   const onSubmit = (values) => {
@@ -82,18 +81,18 @@ const EditUnit = () => {
       ...values,
       owned: values.owned === "true" ? true : false,
       user_id: parseInt(values.user_id, 10),
+      building_id: building.id,
     };
 
     dispatch(
-      editUnit({
-        id: unit.id,
+      addUnit({
         body: subValues,
         success: () => {
           history.push("/properties/unit");
           dispatch(
             setToast({
               toastShow: true,
-              toastMessage: "Unit Successfully Updated!",
+              toastMessage: "You successfully created new Unit!",
             })
           );
         },
@@ -101,7 +100,7 @@ const EditUnit = () => {
           dispatch(
             setToast({
               toastShow: true,
-              toastMessage: "Unit Updating Failed!",
+              toastMessage: "Unit Creating Failed!",
             })
           );
         },
@@ -116,7 +115,7 @@ const EditUnit = () => {
           <CCardGroup>
             <CCard>
               <CCardHeader>
-                <CCardTitle>Edit Unit</CCardTitle>
+                <CCardTitle>Add New Unit</CCardTitle>
               </CCardHeader>
               <CCardBody>
                 <Formik
@@ -233,7 +232,6 @@ const EditUnit = () => {
                               id="owned"
                               valid={!errors.owned}
                               invalid={touched.owned && !!errors.owned}
-                              value={values.owned}
                             >
                               <option value="false">False</option>
                               <option value="true">True</option>
@@ -253,7 +251,6 @@ const EditUnit = () => {
                               name="user_id"
                               valid={!errors.user_id}
                               invalid={touched.user_id && !!errors.user_id}
-                              value={values.user_id}
                             >
                               {users.map((user, index) => {
                                 return (
@@ -269,7 +266,7 @@ const EditUnit = () => {
                       </CRow>
                       <CFormGroup className="text-right">
                         <CButton color="primary" type="submit">
-                          Update
+                          Add
                         </CButton>{" "}
                         <CButton
                           color="secondary"
@@ -292,4 +289,4 @@ const EditUnit = () => {
   );
 };
 
-export default EditUnit;
+export default AddUnit;

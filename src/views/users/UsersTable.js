@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, getUsers, getAvatar } from "../../redux/actions/user";
-import { CButton, CDataTable, CRow, CCol } from "@coreui/react";
+import { CButton, CDataTable } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
 
@@ -34,8 +34,6 @@ const UsersTable = (props) => {
     dispatch(getAvatar({ id: users[index].avatar }));
     setHandleEditModal(true);
   };
-
-  const handleRemove = () => {};
 
   return (
     <CDataTable
@@ -75,19 +73,10 @@ const UsersTable = (props) => {
         },
         edit: (item, index) => {
           return (
-            <td>
-              <CRow className="">
-                <CCol col="6" className="text-right">
-                  <CButton onClick={() => handleEdit(index)} size="sm" color="info">
-                    <CIcon content={freeSet.cilPencil} />
-                  </CButton>
-                </CCol>
-                <CCol col="6" className="text-left">
-                  <CButton onClick={() => handleRemove(index)} size="sm" color="danger">
-                    <CIcon content={freeSet.cilTrash} />
-                  </CButton>
-                </CCol>
-              </CRow>
+            <td className="text-center">
+              <CButton onClick={() => handleEdit(index)} size="sm" color="info">
+                <CIcon content={freeSet.cilPencil} />
+              </CButton>
             </td>
           );
         },

@@ -8,13 +8,15 @@ const Customer = React.lazy(() => import("../views/properties/Customer/Customer"
 const AddCustomer = React.lazy(() => import("../views/properties/Customer/AddCustomer"));
 const EditCustomer = React.lazy(() => import("../views/properties/Customer/EditCustomer"));
 
-const Building = React.lazy(() => import("../views/properties/Building/Building"));
-const AddBuilding = React.lazy(() => import("../views/properties/Building/AddBuilding"));
-const EditBuilding = React.lazy(() => import("../views/properties/Building/EditBuilding"));
-
-const Unit = React.lazy(() => import("../views/properties/Unit/Unit"));
-const AddUnit = React.lazy(() => import("../views/properties/Unit/AddUnit"));
-const EditUnit = React.lazy(() => import("../views/properties/Unit/EditUnit"));
+const Org = React.lazy(() => import("../views/properties/Building"));
+const AddBuilding = React.lazy(() =>
+  import("../views/properties/Building/BuildingTable/AddBuilding")
+);
+const EditBuilding = React.lazy(() =>
+  import("../views/properties/Building/BuildingTable/EditBuilding")
+);
+const AddUnit = React.lazy(() => import("../views/properties/Building/UnitTable/AddUnit"));
+const EditUnit = React.lazy(() => import("../views/properties/Building/UnitTable/EditUnit"));
 
 const Services = React.lazy(() => import("../views/services/Services"));
 const Reports = React.lazy(() => import("../views/reports/Reports"));
@@ -56,7 +58,7 @@ const routes = [
   {
     path: "/properties/building",
     name: "Building",
-    component: Building,
+    component: Org,
     exact: true,
   },
   {
@@ -68,12 +70,6 @@ const routes = [
     path: "/properties/building/edit",
     name: "EditBuilding",
     component: EditBuilding,
-  },
-  {
-    path: "/properties/unit",
-    name: "Unit",
-    component: Unit,
-    exact: true,
   },
   {
     path: "/properties/unit/add",

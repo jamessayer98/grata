@@ -15,9 +15,7 @@ import {
   CSidebarNavItem,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-
-// sidebar nav config
-import navigation from "./_nav";
+import { navigation } from "./_nav";
 
 const TheSidebar = () => {
   const dispatch = useDispatch();
@@ -29,19 +27,11 @@ const TheSidebar = () => {
       unfoldable
       onShowChange={() => dispatch(setSideBar({ sidebarShow: !show }))}
     >
-      <CSidebarBrand
-        className="d-md-down-none"
-        style={{ justifyContent: "left" }}
-        to="/"
-      >
+      <CSidebarBrand className="d-md-down-none" style={{ justifyContent: "left" }} to="/">
         <Logo width={55} height={55} />
         <Name width={100} height={55} />
 
-        <CIcon
-          className="c-sidebar-brand-minimized"
-          name="sygnet"
-          height={35}
-        />
+        <CIcon className="c-sidebar-brand-minimized" name="sygnet" height={35} />
       </CSidebarBrand>
       <CSidebarNav>
         <CCreateElement

@@ -1,17 +1,8 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  CCard,
-  CCardTitle,
-  CCardHeader,
-  CCardBody,
-  CButton,
-  CDataTable,
-  CRow,
-  CCol,
-} from "@coreui/react";
-import { useDispatch, useSelector } from "react-redux";
 import { getCustomers, getCustomer } from "../../../redux/actions/customer";
+import { CCard, CCardTitle, CCardHeader, CCardBody, CButton, CDataTable } from "@coreui/react";
+import { useDispatch, useSelector } from "react-redux";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
 
@@ -26,11 +17,11 @@ const Customer = () => {
 
   const fields = [
     { key: "index", _style: { width: "10%" } },
-    { key: "name", _style: { width: "10%" } },
+    { key: "name", _style: { width: "20%" } },
     { key: "email", _style: { width: "20%" } },
     { key: "contact", _style: { width: "20%" } },
     { key: "create_date", _style: { width: "20%" } },
-    { key: "edit", _style: { width: "20%" } },
+    { key: "edit", _style: { width: "10%" } },
   ];
 
   const handleAdd = () => {
@@ -40,10 +31,6 @@ const Customer = () => {
   const handleEdit = (index) => {
     dispatch(getCustomer(customers[index]));
     history.push("/properties/customer/edit");
-  };
-
-  const handleRemove = (index) => {
-    // dispatch(getCustomer(customers[index]));
   };
 
   const handleClick = (item, index, col, e) => {
@@ -80,19 +67,10 @@ const Customer = () => {
             },
             edit: (item, index) => {
               return (
-                <td>
-                  <CRow className="">
-                    <CCol col="6" className="text-right">
-                      <CButton onClick={() => handleEdit(index)} size="sm" color="info">
-                        <CIcon content={freeSet.cilPencil} />
-                      </CButton>
-                    </CCol>
-                    <CCol col="6" className="text-left">
-                      <CButton onClick={() => handleRemove(index)} size="sm" color="danger">
-                        <CIcon content={freeSet.cilTrash} />
-                      </CButton>
-                    </CCol>
-                  </CRow>
+                <td className="text-center">
+                  <CButton onClick={() => handleEdit(index)} size="sm" color="info">
+                    <CIcon content={freeSet.cilPencil} />
+                  </CButton>
                 </td>
               );
             },

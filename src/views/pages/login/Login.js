@@ -32,9 +32,7 @@ const Login = () => {
 
   const validationSchema = function (values) {
     return Yup.object().shape({
-      email: Yup.string()
-        .email("Invalid email address")
-        .required("Email is required!"),
+      email: Yup.string().email("Invalid email address").required("Email is required!"),
     });
   };
 
@@ -109,26 +107,13 @@ const Login = () => {
                     validate={validate(validationSchema)}
                     onSubmit={onSubmit}
                   >
-                    {({
-                      values,
-                      errors,
-                      touched,
-                      handleChange,
-                      handleBlur,
-                      handleSubmit,
-                    }) => (
-                      <CForm
-                        onSubmit={handleSubmit}
-                        noValidate
-                        name="LoginForm"
-                      >
+                    {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+                      <CForm onSubmit={handleSubmit} noValidate name="LoginForm">
                         <div className="d-flex">
                           <Logo width={70} height={70} />
                           <div className="d-absolute">
                             <p className="pl-1 h1">Login</p>
-                            <p className="pl-1 text-muted">
-                              Sign In to your account
-                            </p>
+                            <p className="pl-1 text-muted">Sign In to your account</p>
                           </div>
                         </div>
 
@@ -177,18 +162,12 @@ const Login = () => {
                               onBlur={handleBlur}
                               value={values.password}
                             />
-                            <CInvalidFeedback>
-                              {errors.password}
-                            </CInvalidFeedback>
+                            <CInvalidFeedback>{errors.password}</CInvalidFeedback>
                           </CInputGroup>
                         </CFormGroup>
                         <CRow>
                           <CCol xs="6">
-                            <CButton
-                              type="submit"
-                              color="primary"
-                              className="px-4"
-                            >
+                            <CButton type="submit" color="primary" className="px-4">
                               Login
                             </CButton>
                           </CCol>
