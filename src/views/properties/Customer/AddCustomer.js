@@ -25,11 +25,6 @@ import * as Yup from "yup";
 const AddCustomer = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { customer } = useSelector((state) => state.customer);
-
-  useEffect(() => {
-    if (!customer.id) history.push("/properties/customer");
-  }, [customer, history]);
 
   const validationSchema = function (values) {
     return Yup.object().shape({
