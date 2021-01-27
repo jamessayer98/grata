@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { setToast } from "../../../redux/actions/window";
 import { addCustomer } from "../../../redux/actions/customer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import {
   CForm,
