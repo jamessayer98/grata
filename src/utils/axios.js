@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const baseURL = "http://localhost:3000";
+export const baseURL = "https://grata-api-gateway-8i6ttwu5.uc.gateway.dev";
 
 const INSTANCE = axios.create({
   baseURL,
@@ -22,19 +22,14 @@ const createAxiosResponseInterceptor = () => {
        */
       INSTANCE.interceptors.response.eject(interceptor);
 
-      return INSTANCE.post(
-        `/login/refresh-token/?key=${process.env.REACT_APP_TOKEN_API_KEY}`,
-        {
-          refreshToken: localStorage.getItem("refreshToken"),
-        }
-      )
+      return INSTANCE.post(`/login/refresh-token/?key=${process.env.REACT_APP_TOKEN_API_KEY}`, {
+        refreshToken: localStorage.getItem("refreshToken"),
+      })
         .then((response) => {
           localStorage.setItem("idToken", response.data.idToken);
           localStorage.setItem("refreshToken", response.data.refreshToken);
 
-          error.response.config.headers[
-            "Authorization"
-          ] = `Bearer ${response.data.idToken}`;
+          error.response.config.headers["Authorization"] = `Bearer ${response.data.idToken}`;
 
           return INSTANCE(error.response.config);
         })
