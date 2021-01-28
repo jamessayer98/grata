@@ -92,7 +92,7 @@ const ServicesForm = () => {
       </CCardHeader>
       <CCardBody>
         <CRow>
-          <CCol xs="12" md="6" lg="6" sm="12">
+          <CCol xs="12" md="3" lg="2" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="id">
                 ID
@@ -165,7 +165,7 @@ const ServicesForm = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs="12" md="6" lg="4" sm="12">
+          <CCol xs="12" md="6" lg="2" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="create_date">
                 Create Date
@@ -173,7 +173,7 @@ const ServicesForm = () => {
               <CInput id="subject" className="h6" value={service.create_date} required />
             </CFormGroup>
           </CCol>
-          <CCol xs="12" md="6" lg="4" sm="12">
+          <CCol xs="12" md="6" lg="2" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="last_udpate">
                 Last Update
