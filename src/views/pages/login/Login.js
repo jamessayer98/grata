@@ -60,7 +60,7 @@ const Login = () => {
   };
 
   const initialValues = {
-    email: localStorage.getItem("email") ? localStorage.getItem("email") : "",
+    email: localStorage.getItem("user") ? localStorage.getItem("user") : "",
     password: "",
   };
 
