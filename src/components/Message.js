@@ -1,9 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { CAlert, CRow, CCol } from "@coreui/react";
 
 const Message = (props) => {
   const { comment } = props;
-  const role = localStorage.getItem("roleId");
+  const { role } = useSelector((state) => state.auth);
 
   return (
     <CRow>

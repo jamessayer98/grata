@@ -73,7 +73,6 @@ const Login = () => {
         body: { email: values.email, password: values.password },
         success: () => {
           localStorage.setItem("user", values.email);
-
           dispatch(
             setToast({
               toastShow: true,

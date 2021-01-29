@@ -29,8 +29,11 @@ const ServicesForm = () => {
   const { service, comments, commentId } = useSelector((state) => state.services);
 
   useEffect(() => {
-    dispatch(getAvatar({ id: service.media }));
-  }, [dispatch, service.media]);
+    console.log(service.media);
+    if (service && service.media) {
+      dispatch(getAvatar({ id: service.media }));
+    }
+  }, [dispatch, service]);
 
   const validationSchema = function (values) {
     return Yup.object().shape({
@@ -139,7 +142,7 @@ const ServicesForm = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs="12" md="6" lg="4" sm="12">
+          <CCol xs="12" md="3" lg="2" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="media">
                 Media
@@ -149,7 +152,7 @@ const ServicesForm = () => {
           </CCol>
         </CRow>
         <CRow>
-          <CCol xs="12" md="9" lg="6" sm="12">
+          <CCol xs="12" md="9" lg="8" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="description">
                 Description
@@ -173,6 +176,8 @@ const ServicesForm = () => {
               <CInput id="subject" className="h6" value={service.create_date} required />
             </CFormGroup>
           </CCol>
+        </CRow>
+        <CRow>
           <CCol xs="12" md="6" lg="2" sm="12">
             <CFormGroup>
               <CLabel className="h6" htmlFor="last_udpate">

@@ -88,7 +88,7 @@ const AddUnit = () => {
       addUnit({
         body: subValues,
         success: () => {
-          history.push("/properties/unit");
+          history.push("/properties/building");
           dispatch(
             setToast({
               toastShow: true,

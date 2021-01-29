@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const baseURL = process.env.REACT_APP_BACK_END_API;
+export const baseURL = "https://grata-api-gateway-8i6ttwu5.uc.gateway.dev";
 
 const INSTANCE = axios.create({
   baseURL,

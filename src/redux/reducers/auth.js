@@ -20,6 +20,7 @@ export default createReducer(initialState, {
     return {
       ...state,
       isLoggedIn: true,
+      roleId: payload.roleId,
     };
   },
 

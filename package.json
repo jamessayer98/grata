@@ -11,7 +11,7 @@
   "private": true,
   "dependencies": {
     "@coreui/coreui-pro": "^3.2.0",
-    "@coreui/icons": "2.0.0-beta.4",
+    "@coreui/icons": "^2.0.0-rc.0",
     "@coreui/icons-react": "^1.0.1",
     "@coreui/react": "^3.0.1",
     "@reduxjs/toolkit": "^1.5.0",
@@ -78,6 +78,5 @@
   "engines": {
     "node": ">=8.16",
     "npm": ">=6"
-  },
-  "proxy": "https://grata-api-gateway-8i6ttwu5.uc.gateway.dev"
+  }
 }
