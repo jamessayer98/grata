@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CCard, CCardHeader, CCardTitle, CCardBody, CDataTable } from "@coreui/react";
-import { getServices, getService, getCommentId } from "../../redux/actions/services";
+import {
+  getServices,
+  getService,
+  getCommentId,
+  filterServices,
+} from "../../redux/actions/services";
 
 const ServicesTable = () => {
   const dispatch = useDispatch();
@@ -37,6 +42,7 @@ const ServicesTable = () => {
           hover
           sorter
           pagination
+          onFilteredItemsChange={(val) => dispatch(filterServices(val))}
           onRowClick={(item, index, col, e) => {
             dispatch(getService({ id: item.id }));
             dispatch(

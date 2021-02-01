@@ -18,8 +18,12 @@ const EditBuilding = React.lazy(() =>
 const AddUnit = React.lazy(() => import("../views/properties/Building/UnitTable/AddUnit"));
 const EditUnit = React.lazy(() => import("../views/properties/Building/UnitTable/EditUnit"));
 
+const Amenitiies = React.lazy(() => import("../views/properties/Amenities/Amenities"));
+
 const Services = React.lazy(() => import("../views/services/Services"));
 const Reports = React.lazy(() => import("../views/reports/Reports"));
+
+const Offers = React.lazy(() => import("../views/offers/Offers"));
 
 const routes = [
   {
@@ -87,9 +91,19 @@ const routes = [
     component: EditUnit,
   },
   {
+    path: "/properties/amenities",
+    name: "Amenitiies",
+    component: Amenitiies,
+  },
+  {
     path: "/services",
     name: "Services",
     component: Services,
+  },
+  {
+    path: "/offers",
+    name: "Offers",
+    component: Offers,
   },
   {
     path: "/reports",

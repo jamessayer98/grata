@@ -29,8 +29,7 @@ const ServicesForm = () => {
   const { service, comments, commentId } = useSelector((state) => state.services);
 
   useEffect(() => {
-    console.log(service.media);
-    if (service && service.media) {
+    if (service && service.media !== "") {
       dispatch(getAvatar({ id: service.media }));
     }
   }, [dispatch, service]);

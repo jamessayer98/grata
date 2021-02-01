@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export const baseURL = "https://grata-api-gateway-8i6ttwu5.uc.gateway.dev";
 
@@ -34,8 +35,8 @@ const createAxiosResponseInterceptor = () => {
           return INSTANCE(error.response.config);
         })
         .catch((error) => {
-          // localStorage.clear();
-          // window.location.href = "/login";
+          localStorage.clear();
+          useHistory.push("/login");
 
           return Promise.reject(error);
         })

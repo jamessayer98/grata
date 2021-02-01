@@ -1,4 +1,4 @@
-import { createAction } from "redux-actions";
+import { createAction } from "@reduxjs/toolkit";
 import { SET_SIDEBAR, SET_TOAST, SET_ASIDE, SET_MODE } from "../constants";
 
 export const setToast = createAction(SET_TOAST);
@@ -7,8 +7,8 @@ export const setASide = createAction(SET_ASIDE);
 export const setMode = createAction(SET_MODE);
 
 export default {
-	setToast,
-	setSideBar,
-	setASide,
-	setMode,
+  setToast,
+  setSideBar,
+  setASide,
+  setMode,
 };

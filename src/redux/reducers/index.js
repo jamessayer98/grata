@@ -9,6 +9,8 @@ import customer from "./customer";
 import building from "./building";
 import unit from "./unit";
 import country from "./country";
+import amenities from "./amenities";
+import offers from "./offers";
 
 export default (history) =>
   combineReducers({
@@ -21,4 +23,6 @@ export default (history) =>
     building,
     unit,
     country,
+    amenities,
+    offers,
   });

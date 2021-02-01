@@ -6,12 +6,9 @@ import {
   GET_USER,
   ADD_AVATAR,
   GET_AVATAR,
+  FILTER_USERS,
 } from "../constants";
-import {
-  requestSuccess,
-  requestFail,
-  requestPending,
-} from "../../utils/status";
+import { requestSuccess, requestFail, requestPending } from "../../utils/status";
 
 const initialState = {
   users: [],
@@ -29,6 +26,11 @@ export default createReducer(initialState, {
   [GET_USER]: (state, { payload }) => ({
     ...state,
     user: payload,
+  }),
+
+  [FILTER_USERS]: (state, { payload }) => ({
+    ...state,
+    users: payload,
   }),
 
   [requestSuccess(ADD_AVATAR)]: (state, { payload }) => ({
@@ -87,20 +89,20 @@ export default createReducer(initialState, {
 
   [requestFail(ADD_USER)]: (state, { payload }) => ({
     ...state,
-    status: requestSuccess(ADD_USER),
+    status: requestFail(ADD_USER),
     error: payload.error,
   }),
 
-  [requestSuccess(EDIT_USER)]: (state, { payload }) => ({
-    ...state,
-  }),
-
-  [requestPending(EDIT_USER)]: (state, { payload }) => ({
-    ...state,
-  }),
+  [requestSuccess(EDIT_USER)]: (state, { payload }) => {
+    return {
+      ...state,
+      status: requestSuccess(EDIT_USER),
+    };
+  },
 
   [requestFail(EDIT_USER)]: (state, { payload }) => ({
     ...state,
+    status: requestFail(EDIT_USER),
   }),
 
   // [requestSuccess(REMOVE_USER)]: (state, { payload }) => ({

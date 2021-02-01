@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, getUsers, getAvatar } from "../../redux/actions/user";
+import { getUser, getUsers, getAvatar, filterUsers } from "../../redux/actions/user";
 import { CButton, CDataTable } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
@@ -47,6 +47,7 @@ const UsersTable = (props) => {
       hover
       sorter
       pagination
+      onFilteredItemsChange={(val) => dispatch(filterUsers(val))}
       scopedSlots={{
         index: (item, index) => {
           return <td>{index + 1}</td>;

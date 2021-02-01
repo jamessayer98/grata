@@ -4,10 +4,24 @@ import { useSelector } from "react-redux";
 import { CImg } from "@coreui/react";
 
 const Image = () => {
+  const noImg = "avatars/no-image.png";
   const { avatar, status } = useSelector((state) => state.user);
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const { service } = useSelector((state) => state.services);
+  const [avatarUrl, setAvatarUrl] = useState(noImg);
 
-  if (avatar && avatar !== "") {
+  if (service && service.media === "") {
+    return (
+      <div className="text-center">
+        <CImg
+          src="avatars/no-image.png"
+          width="150px"
+          height="150px"
+          alt="User Avatars"
+          className="round img-thumbnail"
+        />
+      </div>
+    );
+  } else if (avatar && avatar !== "") {
     var reader = new FileReader();
 
     reader.onload = function () {
@@ -32,7 +46,17 @@ const Image = () => {
   } else if (status === "GET_AVATAR_PENDING") {
     return <LoadingAvatar />;
   } else {
-    return <></>;
+    return (
+      <div className="text-center">
+        <CImg
+          src="avatars/no-image.png"
+          width="150px"
+          height="150px"
+          alt="User Avatars"
+          className="round img-thumbnail"
+        />
+      </div>
+    );
   }
 };
 

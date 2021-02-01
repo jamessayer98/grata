@@ -5,7 +5,9 @@ import services from "./services";
 import customer from "./customer";
 import building from "./building";
 import unit from "./unit";
+import amenities from "./amenities";
+import offers from "./offers";
 
 export default function* rootSaga() {
-  yield all([user(), auth(), services(), customer(), building(), unit()]);
+  yield all([user(), auth(), services(), customer(), building(), unit(), amenities(), offers()]);
 }

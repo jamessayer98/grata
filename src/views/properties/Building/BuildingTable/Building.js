@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getBuildings, getBuilding } from "../../../../redux/actions/building";
+import EditBuilding from "./EditBuilding";
+import { getBuildings, getBuilding, filterBuildings } from "../../../../redux/actions/building";
 import { setUnitFlag } from "../../../../redux/actions/unit";
 import { CCard, CCardTitle, CCardHeader, CCardBody, CButton, CDataTable } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
@@ -12,6 +13,7 @@ const Building = () => {
   const history = useHistory();
   const { buildings } = useSelector((state) => state.building);
   const { customer } = useSelector((state) => state.customer);
+  const [handleBuildingModal, setHandleBuildingModal] = useState(false);
 
   useEffect(() => {
     if (customer && customer.id) {
@@ -37,7 +39,7 @@ const Building = () => {
 
   const handleEdit = (index) => {
     dispatch(getBuilding(buildings[index]));
-    history.push("/properties/building/edit");
+    setHandleBuildingModal(true);
   };
 
   const handleRowClick = (item, index, col, e) => {
@@ -67,6 +69,7 @@ const Building = () => {
           hover
           sorter
           pagination
+          onFilteredItemsChange={(val) => dispatch(filterBuildings(val))}
           onRowClick={handleRowClick}
           scopedSlots={{
             index: (item, index) => {
@@ -84,6 +87,10 @@ const Building = () => {
           }}
         />
       </CCardBody>
+      <EditBuilding
+        handleBuildingModal={handleBuildingModal}
+        setHandleBuildingModal={setHandleBuildingModal}
+      />
     </CCard>
   );
 };

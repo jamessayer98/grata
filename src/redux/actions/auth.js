@@ -1,4 +1,4 @@
-import { createAction } from "redux-actions";
+import { createAction } from "@reduxjs/toolkit";
 import { LOG_IN, LOG_OUT, SET_IS_LOGGED_IN, SET_ROLE_ID } from "../constants";
 
 export const login = createAction(LOG_IN);

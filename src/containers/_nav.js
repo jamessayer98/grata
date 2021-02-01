@@ -29,12 +29,22 @@ const Navigation = (roleId) => {
                 name: "Building",
                 to: "/properties/building",
               },
+              {
+                _tag: "CSidebarNavItem",
+                name: "Amenities",
+                to: "/properties/amenities",
+              },
             ]
           : [
               {
                 _tag: "CSidebarNavItem",
                 name: "Building",
                 to: "/properties/building",
+              },
+              {
+                _tag: "CSidebarNavItem",
+                name: "Amenities",
+                to: "/properties/amenities",
               },
             ],
     },
@@ -43,6 +53,12 @@ const Navigation = (roleId) => {
       name: "Services",
       to: "/services",
       icon: "cil-devices",
+    },
+    {
+      _tag: "CSidebarNavItem",
+      name: "Offers",
+      to: "/offers",
+      icon: "cil-fingerprint",
     },
     {
       _tag: "CSidebarNavItem",

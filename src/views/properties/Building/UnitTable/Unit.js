@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUnits, getUnit } from "../../../../redux/actions/unit";
+import EditUnit from "./EditUnit";
+import { getUnits, getUnit, filterUnits } from "../../../../redux/actions/unit";
 import { CCard, CCardHeader, CCardBody, CButton, CDataTable, CCardTitle } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
@@ -9,6 +10,7 @@ import { useHistory } from "react-router-dom";
 const Unit = () => {
   const { building } = useSelector((state) => state.building);
   const { units } = useSelector((state) => state.unit);
+  const [handleUnitModal, setHandleUnitModal] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -37,7 +39,7 @@ const Unit = () => {
 
   const handleEdit = (index) => {
     dispatch(getUnit(units[index]));
-    history.push("/properties/unit/edit");
+    setHandleUnitModal(true);
   };
 
   return (
@@ -60,6 +62,7 @@ const Unit = () => {
           hover
           sorter
           pagination
+          onFilteredItemsChange={(val) => dispatch(filterUnits(val))}
           scopedSlots={{
             index: (item, index) => {
               return <td>{index + 1}</td>;
@@ -75,6 +78,7 @@ const Unit = () => {
             },
           }}
         />
+        <EditUnit handleUnitModal={handleUnitModal} setHandleUnitModal={setHandleUnitModal} />
       </CCardBody>
     </CCard>
   );

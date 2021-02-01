@@ -5,6 +5,7 @@ import {
   REMOVE_CUSTOMER,
   GET_CUSTOMERS,
   GET_CUSTOMER,
+  FILTER_CUSTOMERS,
 } from "../constants";
 import { requestSuccess, requestFail, requestPending } from "../../utils/status";
 
@@ -19,6 +20,11 @@ export default createReducer(initialState, {
   [GET_CUSTOMER]: (state, { payload }) => ({
     ...state,
     customer: payload,
+  }),
+
+  [FILTER_CUSTOMERS]: (state, { payload }) => ({
+    ...state,
+    customers: payload,
   }),
 
   [requestSuccess(ADD_CUSTOMER)]: (state, { payload }) => ({

@@ -5,6 +5,7 @@ import {
   ADD_COMMENT,
   GET_COMMENT_ID,
   ADD_COMMENT_DYNAMIC,
+  FILTER_SERVICES,
 } from "../constants";
 import { requestSuccess, requestPending, requestFail } from "../../utils/status";
 
@@ -19,6 +20,11 @@ export default createReducer(initialState, {
   [GET_COMMENT_ID]: (state, { payload }) => ({
     ...state,
     commentId: payload,
+  }),
+
+  [FILTER_SERVICES]: (state, { payload }) => ({
+    ...state,
+    servicesList: payload,
   }),
 
   [ADD_COMMENT_DYNAMIC]: (state, { payload }) => {

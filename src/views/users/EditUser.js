@@ -25,7 +25,6 @@ import * as Yup from "yup";
 const EditUser = (props) => {
   const { handleEditModal, setHandleEditModal } = props;
   const { user } = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
 
   const validationSchema = function (values) {
@@ -33,11 +32,7 @@ const EditUser = (props) => {
       first_name: Yup.string().required("First Name is required"),
       last_name: Yup.string().required("Last Name is required"),
       email: Yup.string().email("Invalid email address").required("Email is required"),
-      cell_phone: Yup.string().required("Mobile Phone Number is required"),
-      home_phone: Yup.string().required("Home Phone Number is required"),
       building_id: Yup.number().min(1).required("Building ID is required"),
-      role_id: Yup.string().length(1, "Role ID is required"),
-      type_id: Yup.string().length(1, "Type ID is required"),
     });
   };
 
@@ -248,12 +243,13 @@ const EditUser = (props) => {
                     id="role_id"
                     valid={!errors.role_id}
                     invalid={touched.role_id && !!errors.role_id}
-                    defaultValue={user.role_id}
+                    value={values.role_id}
                   >
                     <option value={null}>Please Select</option>
                     <option value={1}>User</option>
-                    <option value={2}>Admin</option>
-                    <option value={3}>Super Admin</option>
+                    <option value={2}>Manager</option>
+                    <option value={3}>Admin</option>
+                    <option value={99}>Super Admin</option>
                   </CSelect>
                   <CInvalidFeedback>{errors.role_id}</CInvalidFeedback>
                 </CCol>
@@ -267,7 +263,7 @@ const EditUser = (props) => {
                     id="type_id"
                     valid={!errors.type_id}
                     invalid={touched.type_id && !!errors.type_id}
-                    defaultValue={user.type_id}
+                    value={values.type_id}
                   >
                     <option value={null}>Please Select</option>
                     <option value={1}>Resident</option>

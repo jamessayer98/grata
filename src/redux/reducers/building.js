@@ -1,5 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { GET_BUILDING, ADD_BUILDING, EDIT_BUILDING, GET_BUILDINGS } from "../constants";
+import {
+  GET_BUILDING,
+  ADD_BUILDING,
+  EDIT_BUILDING,
+  GET_BUILDINGS,
+  FILTER_USERS,
+} from "../constants";
 import { requestSuccess, requestFail, requestPending } from "../../utils/status";
 
 const initialState = {
@@ -15,6 +21,11 @@ export default createReducer(initialState, {
     building: payload,
   }),
 
+  [FILTER_USERS]: (state, { payload }) => ({
+    ...state,
+    buildings: payload,
+  }),
+
   [requestSuccess(ADD_BUILDING)]: (state, { payload }) => ({
     ...state,
     status: requestSuccess(ADD_BUILDING),
@@ -26,10 +37,12 @@ export default createReducer(initialState, {
     error: null,
   }),
 
-  [requestSuccess(EDIT_BUILDING)]: (state, { payload }) => ({
-    ...state,
-    status: requestSuccess(ADD_BUILDING),
-  }),
+  [requestSuccess(EDIT_BUILDING)]: (state, { payload }) => {
+    return {
+      ...state,
+      status: requestSuccess(ADD_BUILDING),
+    };
+  },
 
   [requestFail(EDIT_BUILDING)]: (state, { payload }) => ({
     ...state,
