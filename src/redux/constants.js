@@ -24,10 +24,13 @@ export const EDIT_UNIT = "EDIT_UNIT";
 export const REMOVE_UNIT = "REMOVE_UNIT";
 export const GET_UNIT = "GET_UNIT";
 export const GET_UNITS = "GET_UNITS";
-export const SET_UNIT_FLAG = "SET_UNIT_FLAG";
 export const FILTER_UNITS = "FILTER_UNITS";
 
+export const GET_AMENITY = "GET_AMENITY";
 export const GET_AMENITIES = "GET_AMENITIES";
+export const GET_BUILDING_AMENITIES = "GET_BUILDING_AMENITIES";
+export const ADD_AMENITIES = "ADD_AMENITIES";
+export const EDIT_AMENITIES = "EDIT_AMENITIES";
 export const FILTER_AMENITIES = "FILTER_AMENITIES";
 
 export const ADD_AVATAR = "ADD_AVATAR";
@@ -57,5 +60,14 @@ export const SET_ROLE_ID = "SET_ROLE_ID";
 export const GET_COUNTRY = "GET_COUNTRY";
 export const GET_STATE = "GET_STATE";
 
+export const ADD_OFFER = "ADD_OFFER";
+export const EDIT_OFFER = "EDIT_OFFER";
 export const GET_OFFERS = "GET_OFFERS";
+export const GET_OFFER = "GET_OFFER";
 export const FILTER_OFFERS = "FILTER_OFFERS";
+
+export const ADD_BOOKING = "ADD_BOOKING";
+export const EDIT_BOOKING = "EDIT_BOOKING";
+export const GET_BOOKINGS = "GET_BOOKINGS";
+export const GET_BOOKING = "GET_BOOKING";
+export const FILTER_BOOKINGS = "FILTER_BOOKINGS";

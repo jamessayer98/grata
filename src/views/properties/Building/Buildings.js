@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import EditBuilding from "./EditBuilding";
-import { getBuildings, getBuilding, filterBuildings } from "../../../../redux/actions/building";
-import { setUnitFlag } from "../../../../redux/actions/unit";
+import { getBuildings, getBuilding, filterBuildings } from "../../../redux/actions/building";
 import { CCard, CCardTitle, CCardHeader, CCardBody, CButton, CDataTable } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { freeSet } from "@coreui/icons";
 
-const Building = () => {
+const Buildings = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { buildings } = useSelector((state) => state.building);
@@ -45,7 +44,7 @@ const Building = () => {
   const handleRowClick = (item, index, col, e) => {
     if (col !== "edit") {
       dispatch(getBuilding(buildings[index]));
-      dispatch(setUnitFlag(true));
+      history.push("/properties/unit&amenities");
     }
   };
 
@@ -95,4 +94,4 @@ const Building = () => {
   );
 };
 
-export default Building;
+export default Buildings;

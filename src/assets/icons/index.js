@@ -12,6 +12,7 @@ import {
   cilDevices,
   cilCommentSquare,
   cilFingerprint,
+  cilNotes,
 } from "@coreui/icons";
 
 export const icons = Object.assign(
@@ -31,5 +32,6 @@ export const icons = Object.assign(
     cilDevices,
     cilCommentSquare,
     cilFingerprint,
+    cilNotes,
   }
 );

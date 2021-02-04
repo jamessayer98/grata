@@ -8,5 +8,18 @@ import unit from "./unit";
 import country from "./country";
 import amenities from "./amenities";
 import offers from "./offers";
+import bookings from "./bookings";
 
-export { auth, window, user, services, customer, building, unit, country, amenities, offers };
+export {
+  auth,
+  window,
+  user,
+  services,
+  customer,
+  building,
+  unit,
+  country,
+  amenities,
+  offers,
+  bookings,
+};

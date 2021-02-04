@@ -31,8 +31,8 @@ const Navigation = (roleId) => {
               },
               {
                 _tag: "CSidebarNavItem",
-                name: "Amenities",
-                to: "/properties/amenities",
+                name: "Unit & Amenities",
+                to: "/properties/unit&amenities",
               },
             ]
           : [
@@ -43,22 +43,28 @@ const Navigation = (roleId) => {
               },
               {
                 _tag: "CSidebarNavItem",
-                name: "Amenities",
-                to: "/properties/amenities",
+                name: "Unit & Amenities",
+                to: "/properties/unit&amenitiess",
               },
             ],
-    },
-    {
-      _tag: "CSidebarNavItem",
-      name: "Services",
-      to: "/services",
-      icon: "cil-devices",
     },
     {
       _tag: "CSidebarNavItem",
       name: "Offers",
       to: "/offers",
       icon: "cil-fingerprint",
+    },
+    {
+      _tag: "CSidebarNavItem",
+      name: "Booking",
+      to: "/booking",
+      icon: "cil-notes",
+    },
+    {
+      _tag: "CSidebarNavItem",
+      name: "Services",
+      to: "/services",
+      icon: "cil-devices",
     },
     {
       _tag: "CSidebarNavItem",

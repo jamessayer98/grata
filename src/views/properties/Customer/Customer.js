@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { getCustomers, getCustomer, filterCustomers } from "../../../redux/actions/customer";
-import { setUnitFlag } from "../../../redux/actions/unit";
 import { CCard, CCardTitle, CCardHeader, CCardBody, CButton, CDataTable } from "@coreui/react";
 import { useDispatch, useSelector } from "react-redux";
 import CIcon from "@coreui/icons-react";
@@ -39,7 +38,6 @@ const Customer = () => {
   const handleClick = (item, index, col, e) => {
     if (col !== "edit") {
       dispatch(getCustomer(customers[index]));
-      dispatch(setUnitFlag(false));
       history.push("/properties/building");
     }
   };

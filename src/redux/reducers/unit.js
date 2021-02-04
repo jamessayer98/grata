@@ -1,11 +1,10 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { GET_UNIT, GET_UNITS, REMOVE_UNIT, EDIT_UNIT, ADD_UNIT, SET_UNIT_FLAG } from "../constants";
+import { GET_UNIT, GET_UNITS, REMOVE_UNIT, EDIT_UNIT, ADD_UNIT } from "../constants";
 import { requestSuccess, requestFail } from "../../utils/status";
 
 const initialState = {
   units: [],
   unit: {},
-  unitFlag: false,
   status: "INIT",
   params: {
     page: 1,
@@ -17,11 +16,6 @@ export default createReducer(initialState, {
   [GET_UNIT]: (state, { payload }) => ({
     ...state,
     unit: payload,
-  }),
-
-  [SET_UNIT_FLAG]: (state, { payload }) => ({
-    ...state,
-    unitFlag: payload,
   }),
 
   [requestSuccess(ADD_UNIT)]: (state, { payload }) => ({

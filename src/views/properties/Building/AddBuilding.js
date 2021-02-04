@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setToast } from "../../../../redux/actions/window";
-import { list } from "../../../../utils/list";
-import { addBuilding } from "../../../../redux/actions/building";
+import { setToast } from "../../../redux/actions/window";
+import { list } from "../../../utils/list";
+import { addBuilding } from "../../../redux/actions/building";
 import { Formik } from "formik";
 import {
   CForm,

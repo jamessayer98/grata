@@ -5,8 +5,7 @@ import { requestFail, requestPending, requestSuccess } from "./status";
 
 export default ({ type, method, path, success, isFormData, isBlob }) =>
   function* (action) {
-    const { body, params, success: successPayload, fail: failPayload } =
-      action.payload || {};
+    const { body, params, success: successPayload, fail: failPayload } = action.payload || {};
 
     const idToken = localStorage.getItem("idToken");
 
